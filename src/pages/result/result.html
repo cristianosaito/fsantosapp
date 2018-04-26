@@ -1,0 +1,63 @@
+<!--
+  Generated template for the ResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>resultado</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+  <ion-item>
+    NCM: {{this.calculoProvider.ncm}}
+  </ion-item>
+  <ion-item>
+    CATEGORIA: {{this.calculoProvider.categoria}}
+  </ion-item>
+  <ion-item>
+    DESCRIÇÃO: {{this.calculoProvider.descricao}}
+  </ion-item>
+  <ion-item>
+    MOEDA: {{this.calculoProvider.moeda}} 
+  </ion-item>
+  <ion-item>
+    CAMBIO: R$ {{this.calculoProvider.cambio_formatado}}
+  </ion-item>
+  <ion-item>
+    PREÇO UNITÁRIO:  {{this.calculoProvider.valor_uni_formatado}}
+  </ion-item>
+  <ion-item>
+    QUANTIDADE: {{this.calculoProvider.quantidade}}
+  </ion-item>
+  <ion-item>
+    TOTAL EM REAL - R$: {{this.calculoProvider.total_real_formatado}}
+  </ion-item>
+    <ion-item>
+      ORIGEM: {{this.calculoProvider.origem}}
+    </ion-item>
+    <ion-item>
+      DESTINO: {{this.calculoProvider.destino}}
+    </ion-item>
+  <ion-item>
+    II: {{this.calculoProvider.tec*100}}% - R$ {{this.calculoProvider.total_tec_formatado}}
+  </ion-item>
+  <ion-item>
+    IPI: {{this.calculoProvider.ipi*100}}% - R$ {{this.calculoProvider.total_ipi_formatado}}
+  </ion-item>
+  <ion-item>
+    PIS: {{this.calculoProvider.pis*100}}% - R$ {{this.calculoProvider.total_pis_formatado}}
+  </ion-item>
+  <ion-item>
+    COFINS: {{this.calculoProvider.cofins*100}}% - R$ {{this.calculoProvider.total_cofins_formatado}}
+  </ion-item>
+  <ion-item>
+    ICMS: {{this.calculoProvider.icms*100}}% - R$ {{this.calculoProvider.total_icms_formatado}}
+  </ion-item>
+</ion-list>
+</ion-content>

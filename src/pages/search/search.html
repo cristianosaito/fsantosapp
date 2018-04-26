@@ -1,0 +1,194 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pesquisa NCM</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding text-center>
+    <img src="assets/imgs/logo.png" />
+
+  <h3>Escolha o Tipo de pesquisa</h3>
+  <button ion-button full (click)="showFormNCM();">NCM</button>
+  <button ion-button full (click)="showFormTermo();">Termo</button>
+  <button ion-button full (click)="showFormCat();">Categoria</button>
+
+  <div *ngIf="showNcmDiv">
+    <form [formGroup]="ncmGroup" id='form_ncm' (ngSubmit)="submitFormNCM()" accept-charset="utf-8">
+      <ion-list>
+        <ion-item text-center>
+          <ion-label stacked>Digite o número do NCM</ion-label>
+          <ion-input type="text" name="ncm" id="ncm_input" formControlName="ncm"></ion-input>
+        </ion-item>
+        <ion-item text-center>
+          <button [disabled]="ncmGroup.invalid" ion-button full block color="danger">pesquisar</button>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+
+  <div *ngIf="showTermoDiv">
+    <form [formGroup]="termoGroup" id='form_termo' (ngSubmit)="submitFormTermo()" accept-charset="utf-8">
+      <ion-list>
+        <ion-item text-center>
+          <ion-label stacked>Digite o nome do produto</ion-label>
+          <ion-input type="text" name="termo" id="termo_input" formControlName="termo"></ion-input>
+        </ion-item>
+        <ion-item text-center>
+          <button [disabled]="termoGroup.invalid" ion-button full block color="danger">pesquisar</button>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+
+  <div *ngIf="showCatDiv">
+    <form [formGroup]="catGroup" id='form_cat' (ngSubmit)="submitFormCat()" accept-charset="utf-8">
+      <ion-list>
+        <ion-item text-center>
+          <ion-label stacked>Escolha a categoria</ion-label>
+            <ion-select formControlName="categoria">
+              <ion-option value="01">01-ANIMAIS VIVOS</ion-option>
+              <ion-option value="02">02-CARNES E MIUDEZAS, COMESTÍVEIS</ion-option>
+              <ion-option value="03">03-PEIXES E CRUSTÁCEOS, MOLUSCOS E OUTROS INVERTEBRADOS AQUÁTICOS</ion-option>
+              <ion-option value="04">04-LEITE E LACTICÍNIOS; OVOS DE AVES; MEL NATURAL; PRODUTOS COMESTÍVEIS DE ORIGEM ANIMAL, NÃO ESPECIFICADOS NEM COMPREENDIDOS
+              NOUTROS CAPÍTULOS</ion-option>
+              <ion-option value="05">05-OUTROS PRODUTOS DE ORIGEM ANIMAL, NÃO ESPECIFICADOS NEM COMPREENDIDOS NOUTROS CAPÍTULOS</ion-option>
+              <ion-option value="06">06-PLANTAS VIVAS E PRODUTOS DE FLORICULTURA</ion-option>
+              <ion-option value="07">07-PRODUTOS HORTÍCOLAS, PLANTAS, RAÍZES E TUBÉRCULOS, COMESTÍVEIS</ion-option>
+              <ion-option value="08">08-FRUTA; CASCAS DE CITROS (CITRINOS*) E DE MELÕES</ion-option>
+              <ion-option value="09">09-CAFÉ, CHÁ, MATE E ESPECIARIAS</ion-option>
+              <ion-option value="10">10-CEREAIS</ion-option>
+              <ion-option value="11">11-PRODUTOS DA INDÚSTRIA DE MOAGEM; MALTE; AMIDOS E FÉCULAS; INULINA; GLÚTEN DE TRIGO</ion-option>
+              <ion-option value="12">12-SEMENTES E FRUTOS OLEAGINOSOS; GRÃOS, SEMENTES E FRUTOS DIVERSOS; PLANTAS INDUSTRIAIS OU MEDICINAIS; PALHAS E FORRAGENS</ion-option>
+              <ion-option value="13">13-GOMAS, RESINAS E OUTROS SUCOS E EXTRATOS VEGETAIS</ion-option>
+              <ion-option value="14">14-MATÉRIAS PARA ENTRANÇAR E OUTROS PRODUTOS DE ORIGEM VEGETAL, NÃO ESPECIFICADOS NEM COMPREENDIDOS NOUTROS CAPÍTULOS</ion-option>
+              <ion-option value="15">15-GORDURAS E ÓLEOS ANIMAIS OU VEGETAIS; PRODUTOS DA SUA DISSOCIAÇÃO; GORDURAS ALIMENTÍCIAS ELABORADAS; CERAS DE ORIGEM ANIMAL
+              OU VEGETAL</ion-option>
+              <ion-option value="16">16-PREPARAÇÕES DE CARNE, DE PEIXES OU DE CRUSTÁCEOS, DE MOLUSCOS OU DE OUTROS INVERTEBRADOS AQUÁTICOS</ion-option>
+              <ion-option value="17">17-AÇÚCARES E PRODUTOS DE CONFEITARIA</ion-option>
+              <ion-option value="18">18-CACAU E SUAS PREPARAÇÕES</ion-option>
+              <ion-option value="19">19-PREPARAÇÕES à BASE DE CEREAIS, FARINHAS, AMIDOS, FÉCULAS OU LEITE; PRODUTOS DE PASTELARIA</ion-option>
+              <ion-option value="20">20-PREPARAÇÕES DE PRODUTOS HORTÍCOLAS, FRUTA OU DE OUTRAS PARTES DE PLANTAS</ion-option>
+              <ion-option value="21">21-PREPARAÇÕES ALIMENTÍCIAS DIVERSAS</ion-option>
+              <ion-option value="22">22-BEBIDAS, LÍQUIDOS ALCOÓLICOS E VINAGRES</ion-option>
+              <ion-option value="23">23-RESÍDUOS E DESPERDÍCIOS DAS INDÚSTRIAS ALIMENTARES; ALIMENTOS PREPARADOS PARA ANIMAIS</ion-option>
+              <ion-option value="24">24-TABACO E SEUS SUCEDÂNEOS MANUFATURADOS</ion-option>
+              <ion-option value="25">25-SAL; ENXOFRE; TERRAS E PEDRAS; GESSO, CAL E CIMENTO</ion-option>
+              <ion-option value="26">26-MINÉRIOS, ESCÓRIAS E CINZAS</ion-option>
+              <ion-option value="27">27-COMBUSTÍVEIS MINERAIS, ÓLEOS MINERAIS E PRODUTOS DA SUA DESTILAÇÃO; MATÉRIAS BETUMINOSAS; CERAS MINERAIS</ion-option>
+              <ion-option value="28">28-PRODUTOS QUÍMICOS INORGÂNICOS; COMPOSTOS INORGÂNICOS OU ORGÂNICOS DE METAIS PRECIOSOS, DE ELEMENTOS RADIOATIVOS, DE METAIS
+              DAS TERRAS RARAS OU DE ISÓTOPOS</ion-option>
+              <ion-option value="29">29-PRODUTOS QUÍMICOS ORGÂNICOS</ion-option>
+              <ion-option value="30">30-PRODUTOS FARMACÊUTICOS</ion-option>
+              <ion-option value="31">31-ADUBOS (FERTILIZANTES)</ion-option>
+              <ion-option value="32">32-EXTRATOS TANANTES E TINTORIAIS; TANINOS E SEUS DERIVADOS; PIGMENTOS E OUTRAS MATÉRIAS CORANTES; TINTAS E VERNIZES; MÁSTIQUES;
+              TINTAS DE ESCREVER</ion-option>
+              <ion-option value="33">33-ÓLEOS ESSENCIAIS E RESINOIDES; PRODUTOS DE PERFUMARIA OU DE TOUCADOR PREPARADOS E PREPARAÇÕES COSMÉTICAS</ion-option>
+              <ion-option value="34">34-SABÕES, AGENTES ORGÂNICOS DE SUPERFÍCIE, PREPARAÇÕES PARA LAVAGEM, PREPARAÇÕES LUBRIFICANTES, CERAS ARTIFICIAIS, CERAS PREPARADAS,
+              PRODUTOS DE CONSERVAÇÃO E LIMPEZA, VELAS E ARTIGOS SEMELHANTES, MASSAS OU PASTAS PARA MODELAR, “CERAS PARA DENTISTAS” E COMPOSIÇÕES
+              PARA DENTISTAS à BASE DE GESSO</ion-option>
+              <ion-option value="35">35-MATÉRIAS ALBUMINOIDES; PRODUTOS à BASE DE AMIDOS OU DE FÉCULAS MODIFICADOS; COLAS; ENZIMAS</ion-option>
+              <ion-option value="36">36-PÓLVORAS E EXPLOSIVOS; ARTIGOS DE PIROTECNIA; FÓSFOROS; LIGAS PIROFÓRICAS; MATÉRIAS INFLAMÁVEIS</ion-option>
+              <ion-option value="37">37-PRODUTOS PARA FOTOGRAFIA E CINEMATOGRAFIA</ion-option>
+              <ion-option value="38">38-PRODUTOS DIVERSOS DAS INDÚSTRIAS QUÍMICAS</ion-option>
+              <ion-option value="39">39-PLÁSTICO E SUAS OBRAS</ion-option>
+              <ion-option value="40">40-BORRACHA E SUAS OBRAS</ion-option>
+              <ion-option value="41">41-PELES, EXCETO AS PELES COM PELO, E COUROS</ion-option>
+              <ion-option value="42">42-OBRAS DE COURO; ARTIGOS DE CORREEIRO OU DE SELEIRO; ARTIGOS DE VIAGEM, BOLSAS E ARTIGOS SEMELHANTES; OBRAS DE TRIPA</ion-option>
+              <ion-option value="43">43-PELES COM PELO E SUAS OBRAS; PELES COM PELO ARTIFICIAIS</ion-option>
+              <ion-option value="44">44-MADEIRA, CARVÃO VEGETAL E OBRAS DE MADEIRA</ion-option>
+              <ion-option value="45">45-CORTIÇA E SUAS OBRAS</ion-option>
+              <ion-option value="46">46-OBRAS DE ESPARTARIA OU DE CESTARIA</ion-option>
+              <ion-option value="47">47-PASTAS DE MADEIRA OU DE OUTRAS MATÉRIAS FIBROSAS CELULÓSICAS; PAPEL OU CARTÃO PARA RECICLAR (DESPERDÍCIOS E APARAS)</ion-option>
+              <ion-option value="48">48-PAPEL E CARTÃO; OBRAS DE PASTA DE CELULOSE, DE PAPEL OU DE CARTÃO</ion-option>
+              <ion-option value="49">49-LIVROS, JORNAIS, GRAVURAS E OUTROS PRODUTOS DAS INDÚSTRIAS GRÁFICAS; TEXTOS MANUSCRITOS OU DATILOGRAFADOS, PLANOS E PLANTAS</ion-option>
+              <ion-option value="50">50-SEDA</ion-option>
+              <ion-option value="51">51-LÃ, PELOS FINOS OU GROSSEIROS; FIOS E TECIDOS DE CRINA</ion-option>
+              <ion-option value="52">52-ALGODÃO</ion-option>
+              <ion-option value="53">53-OUTRAS FIBRAS TÊXTEIS VEGETAIS; FIOS DE PAPEL E TECIDOS DE FIOS DE PAPEL</ion-option>
+              <ion-option value="54">54-FILAMENTOS SINTÉTICOS OU ARTIFICIAIS; LÂMINAS E FORMAS SEMELHANTES DE MATÉRIAS TÊXTEIS SINTÉTICAS OU ARTIFICIAIS</ion-option>
+              <ion-option value="55">55-FIBRAS SINTÉTICAS OU ARTIFICIAIS, DESCONTÍNUAS</ion-option>
+              <ion-option value="56">56-PASTAS (OUATES), FELTROS E FALSOS TECIDOS; FIOS ESPECIAIS; CORDÉIS, CORDAS E CABOS; ARTIGOS DE CORDOARIA</ion-option>
+              <ion-option value="57">57-TAPETES E OUTROS REVESTIMENTOS PARA PISOS (PAVIMENTOS), DE MATÉRIAS TÊXTEIS</ion-option>
+              <ion-option value="58">58-TECIDOS ESPECIAIS; TECIDOS TUFADOS; RENDAS; TAPEÇARIAS; PASSAMANARIAS; BORDADOS</ion-option>
+              <ion-option value="59">59-TECIDOS IMPREGNADOS, REVESTIDOS, RECOBERTOS OU ESTRATIFICADOS; ARTIGOS PARA USOS TÉCNICOS DE MATÉRIAS TÊXTEIS</ion-option>
+              <ion-option value="60">60-TECIDOS DE MALHA</ion-option>
+              <ion-option value="61">61-VESTUÁRIO E SEUS ACESSÓRIOS, DE MALHA</ion-option>
+              <ion-option value="62">62-VESTUÁRIO E SEUS ACESSÓRIOS, EXCETO DE MALHA</ion-option>
+              <ion-option value="63">63-OUTROS ARTIGOS TÊXTEIS CONFECCIONADOS; SORTIDOS; ARTIGOS DE MATÉRIAS TÊXTEIS E ARTIGOS DE USO SEMELHANTE, USADOS; TRAPOS</ion-option>
+              <ion-option value="64">64-CALÇADO, POLAINAS E ARTIGOS SEMELHANTES; SUAS PARTES</ion-option>
+              <ion-option value="65">65-CHAPÉUS E ARTIGOS DE USO SEMELHANTE, E SUAS PARTES</ion-option>
+              <ion-option value="66">66-GUARDA-CHUVAS, SOMBRINHAS, GUARDA-SÓIS, BENGALAS, BENGALAS-ASSENTOS, CHICOTES, PINGALINS, E SUAS PARTES</ion-option>
+              <ion-option value="67">67-PENAS E PENUGEM PREPARADAS E SUAS OBRAS; FLORES ARTIFICIAIS; OBRAS DE CABELO</ion-option>
+              <ion-option value="68">68-OBRAS DE PEDRA, GESSO, CIMENTO, AMIANTO, MICA OU DE MATÉRIAS SEMELHANTES</ion-option>
+              <ion-option value="69">69-PRODUTOS CERÂMICOS</ion-option>
+              <ion-option value="70">70-VIDRO E SUAS OBRAS</ion-option>
+              <ion-option value="71">71-PÉROLAS NATURAIS OU CULTIVADAS, PEDRAS PRECIOSAS OU SEMIPRECIOSAS E SEMELHANTES, METAIS PRECIOSOS, METAIS FOLHEADOS OU CHAPEADOS
+              DE METAIS PRECIOSOS (PLAQUÊ), E SUAS OBRAS; BIJUTERIAS; MOEDAS</ion-option>
+              <ion-option value="72">72-FERRO FUNDIDO, FERRO E AÇO</ion-option>
+              <ion-option value="73">73-OBRAS DE FERRO FUNDIDO, FERRO OU AÇO</ion-option>
+              <ion-option value="74">74-COBRE E SUAS OBRAS</ion-option>
+              <ion-option value="75">75-NÍQUEL E SUAS OBRAS</ion-option>
+              <ion-option value="76">76-ALUMÍNIO E SUAS OBRAS</ion-option>
+              <ion-option value="78">78-CHUMBO E SUAS OBRAS</ion-option>
+              <ion-option value="79">79-ZINCO E SUAS OBRAS</ion-option>
+              <ion-option value="80">80-ESTANHO E SUAS OBRAS</ion-option>
+              <ion-option value="81">81-OUTROS METAIS COMUNS; CERMETS; OBRAS DESSAS MATÉRIAS</ion-option>
+              <ion-option value="82">82-FERRAMENTAS, ARTIGOS DE CUTELARIA E TALHERES, E SUAS PARTES, DE METAIS COMUNS</ion-option>
+              <ion-option value="83">83-OBRAS DIVERSAS DE METAIS COMUNS</ion-option>
+              <ion-option value="84">84-REATORES NUCLEARES, CALDEIRAS, MÁQUINAS, APARELHOS E INSTRUMENTOS MECÂNICOS, E SUAS PARTES</ion-option>
+              <ion-option value="85">85-MÁQUINAS, APARELHOS E MATERIAIS ELÉTRICOS, E SUAS PARTES; APARELHOS DE GRAVAÇÃO OU DE REPRODUÇÃO DE SOM, APARELHOS DE GRAVAÇÃO
+              OU DE REPRODUÇÃO DE IMAGENS E DE SOM EM TELEVISÃO, E SUAS PARTES E ACESSÓRIOS</ion-option>
+              <ion-option value="86">86-VEÍCULOS E MATERIAL PARA VIAS FÉRREAS OU SEMELHANTES, E SUAS PARTES; APARELHOS MECÂNICOS (INCLUINDO OS ELETROMECÂNICOS) DE
+              SINALIZAÇÃO PARA VIAS DE COMUNICAÇÃO</ion-option>
+              <ion-option value="87">87-VEÍCULOS AUTOMÓVEIS, TRATORES, CICLOS E OUTROS VEÍCULOS TERRESTRES, SUAS PARTES E ACESSÓRIOS</ion-option>
+              <ion-option value="88">88-AERONAVES E APARELHOS ESPACIAIS, E SUAS PARTES</ion-option>
+              <ion-option value="89">89-EMBARCAÇÕES E ESTRUTURAS FLUTUANTES</ion-option>
+              <ion-option value="90">90-INSTRUMENTOS E APARELHOS DE ÓPTICA, DE FOTOGRAFIA, DE CINEMATOGRAFIA, DE MEDIDA, DE CONTROLE OU DE PRECISÃO; INSTRUMENTOS
+              E APARELHOS MÉDICO-CIRÚRGICOS; SUAS PARTES E ACESSÓRIOS</ion-option>
+              <ion-option value="91">91-ARTIGOS DE RELOJOARIA</ion-option>
+              <ion-option value="92">92-INSTRUMENTOS MUSICAIS; SUAS PARTES E ACESSÓRIOS</ion-option>
+              <ion-option value="93">93-ARMAS E MUNIÇÕES; SUAS PARTES E ACESSÓRIOS</ion-option>
+              <ion-option value="94">94-MÓVEIS; MOBILIÁRIO MÉDICO-CIRÚRGICO; COLCHÕES, ALMOFADAS E SEMELHANTES; APARELHOS DE ILUMINAÇÃO NÃO ESPECIFICADOS NEM COMPREENDIDOS
+              NOUTROS CAPÍTULOS; ANÚNCIOS, CARTAZES OU TABULETAS E PLACAS INDICADORAS, LUMINOSOS E ARTIGOS SEMELHANTES; CONSTRUÇÕES PRÉ-FABRICADAS</ion-option>
+              <ion-option value="95">95-BRINQUEDOS, JOGOS, ARTIGOS PARA DIVERTIMENTO OU PARA ESPORTE; SUAS PARTES E ACESSÓRIOS</ion-option>
+              <ion-option value="96">96-OBRAS DIVERSAS</ion-option>
+              <ion-option value="97">97-OBJETOS DE ARTE, DE COLEÇÃO E ANTIGUIDADES</ion-option>
+              <ion-option value="99">99-CONSUMO DE BORDO</ion-option>
+            </ion-select>
+          </ion-item>
+        <ion-item text-center>
+          <button [disabled]="catGroup.invalid" ion-button full block color="danger">pesquisar</button>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+
+  
+   
+    <div *ngIf="showCatReturn">
+      <form accept-charset="utf-8">
+        <ion-list radio-group>
+          <ion-list-header>
+             Escolha o NCM
+          </ion-list-header>
+        <div *ngFor="let ncm of lista_ncm">
+          <ion-item>
+            <ion-label>{{ncm.descricao}}</ion-label>
+            <ion-radio  value="{{ncm.ncm}}"></ion-radio>
+          </ion-item>
+        </div>
+          
+        </ion-list>
+      </form>
+    </div>
+
+</ion-content>

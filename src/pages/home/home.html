@@ -1,17 +1,133 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Simulação</ion-title>
   </ion-navbar>
+ 
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding text-center>
+  <img src="assets/imgs/logo.png" />
+    <form *ngIf="showForm" [formGroup]='simulacao' (ngSubmit)='submitFormSimulacao()' id='form_tax' accept-charset="utf-8">
+        <ion-grid>
+          <ion-row align-items-center>
+            <ion-col col-11>
+              <ion-item text-center>
+              <ion-label floating>Digite o número do NCM</ion-label>
+              <ion-input text-center type="text" name="ncm" formControlName='ncm_number'></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <div>
+                <ion-icon name="search" (click)="goToSearchPage()"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+         
+        <ion-row align-items-center>
+            <ion-col>         
+              <ion-item text-center>
+                <ion-label floating>Valor Unitário</ion-label>
+                <ion-input text-center type="text" name="valor_uni" formControlName='valor_uni'></ion-input>
+              </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item text-center>
+              <ion-label floating>Peso Unitário (Kg)</ion-label>
+              <ion-input text-center type="text" name="peso_uni" formControlName='peso_uni'></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col>
+            <ion-item text-center>
+              <ion-label floating>Quantidade</ion-label>
+              <ion-input text-center type="text" name="quantidade" formControlName='quantidade'></ion-input>
+            </ion-item> 
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col>
+            <ion-item text-center>
+              <ion-label floating>Moeda</ion-label>
+              <ion-select formControlName="moeda">
+                <ion-option value="0">Real - BR</ion-option>
+                <ion-option value="1">Dólar - USD</ion-option>
+                <ion-option value="21619">Euro - EUR</ion-option>
+                <ion-option value="21623">Libra - LIB</ion-option>
+                <ion-option value="21621">Yene - YEN</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item text-center>
+              <ion-label floating>Modal</ion-label>
+              <ion-select formControlName="modal">
+                <ion-option value="ar">aéreo</ion-option>
+                <ion-option value="mar">marítimo</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col>          
+            <ion-item text-center>
+              <ion-label floating>Origem</ion-label>
+              <ion-select formControlName="origem">
+                <ion-option value="EUA">ESTADOS UNIDOS</ion-option>
+                <ion-option value="EUROPA">EUROPA</ion-option>
+                <ion-option value="ASIA">ASIA</ion-option>
+                <ion-option value="OCEANIA">OCEANIA</ion-option>
+                <ion-option value="AMERICA DO SUL">AMERICA DO SUL</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item text-center>
+              <ion-label floating>Destino</ion-label>
+              <ion-select formControlName="destino">
+                <ion-option value="SP">SÃO PAULO</ion-option>
+                <ion-option value="AC">ACRE</ion-option>
+                <ion-option value="AL">ALAGOAS</ion-option>
+                <ion-option value="AP">AMAPÁ</ion-option>
+                <ion-option value="AM">AMAZONAS</ion-option>
+                <ion-option value="BA">BAHIA</ion-option>
+                <ion-option value="CE">CEARÁ</ion-option>
+                <ion-option value="DF">DISTRITO FEDERAL</ion-option>
+                <ion-option value="ES">ESPIRITO SANTO</ion-option>
+                <ion-option value="GO">GOIÁS</ion-option>
+                <ion-option value="MA">MARANHÃO</ion-option>
+                <ion-option value="MT">MATO GROSSO</ion-option>
+                <ion-option value="MS">MATO GROSSO DO SUL</ion-option>
+                <ion-option value="MG">MINAS GERAIS</ion-option>
+                <ion-option value="PA">PARÁ</ion-option>
+                <ion-option value="PB">PARAÍBA</ion-option>
+                <ion-option value="PR">PARANÁ</ion-option>
+                <ion-option value="PE">PERNAMBUCO</ion-option>
+                <ion-option value="PI">PIAUÍ</ion-option>
+                <ion-option value="RJ">RIO DE JANEIRO</ion-option>
+                <ion-option value="RN">RIO GRANDE DO NORTE</ion-option>
+                <ion-option value="RS">RIO GRANDE DO SUL</ion-option>
+                <ion-option value="RO">RONDÔNIA</ion-option>
+                <ion-option value="RR">RORAIMA</ion-option>
+                <ion-option value="SC">SANTA CATARINA</ion-option>
+                <ion-option value="SE">SERGIPE</ion-option>
+                <ion-option value="TO">TOCANTINS</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col>
+          <div text-center>
+            <button [disabled]="simulacao.invalid" ion-button full block color="danger">pesquisar</button>
+          </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+      
+
 </ion-content>

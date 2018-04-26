@@ -1,17 +1,37 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Contato
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+<ion-content padding text-center>
+  <img src="assets/imgs/logo.png" />
+  <h2>Preencha o Formulário</h2>
+   <form [formGroup]="contactForm" (ngSubmit)="sendContactForm()">
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
     </ion-item>
-  </ion-list>
+    <ion-item>
+      <ion-label>E-mail</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefone</ion-label>
+      <ion-input type="text" formControlName="telefone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mensagem</ion-label>
+      <ion-textarea formControlName="mensagem"></ion-textarea>
+    </ion-item>
+    <button ion-button full block type="submit" [disabled]="!contactForm.valid">Enviar</button>
+  </form>
+  <h2>Telefones:</h2>
+<p>+55 11 98649-2321 - WhatsApp</p>
+<p>+55 11 3876-2007 </p>
+<p>+55 11 3876-8006</p>
+
+
 </ion-content>
