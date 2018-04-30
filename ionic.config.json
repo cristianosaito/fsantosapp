@@ -1,6 +1,6 @@
 {
   "name": "fsantosapp",
-  "app_id": "",
+  "app_id": "5309f1d6",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

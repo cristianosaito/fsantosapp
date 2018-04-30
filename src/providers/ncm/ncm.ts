@@ -12,7 +12,6 @@ import 'rxjs/add/operator/map';
 export class NcmProvider {
 
   constructor(public http: Http) {
-    console.log('Hello NcmProvider Provider');
   }
 
   getNcmByNumber(ncm:any){
@@ -32,6 +31,11 @@ export class NcmProvider {
 
   getImpostos(ncm: any, moeda:any) {
     let url = "http://agenciafeeshop.com.br/fsantosapp/getimposto.php?ncm=" + ncm + "&moeda=" + moeda;
+    return this.http.get(url);
+  }
+
+  getCotacao(moeda: any) {
+    let url = "http://agenciafeeshop.com.br/fsantosapp/getcotacao.php?codigo=" + moeda;
     return this.http.get(url);
   }
 }

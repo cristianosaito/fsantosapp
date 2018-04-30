@@ -15,7 +15,7 @@
 
 <ion-content padding text-center>
     <img src="assets/imgs/logo.png" />
-
+<div class="fundo">
   <h3>Escolha o Tipo de pesquisa</h3>
   <button ion-button full (click)="showFormNCM();">NCM</button>
   <button ion-button full (click)="showFormTermo();">Termo</button>
@@ -175,20 +175,22 @@
   
    
     <div *ngIf="showCatReturn">
-      <form accept-charset="utf-8">
-        <ion-list radio-group>
+    <form [formGroup]="resultGroup" id='form_result' (ngSubmit)="submitFormResult()" accept-charset="utf-8">
+        <ion-list radio-group formControlName="result">
           <ion-list-header>
              Escolha o NCM
           </ion-list-header>
         <div *ngFor="let ncm of lista_ncm">
           <ion-item>
-            <ion-label>{{ncm.descricao}}</ion-label>
-            <ion-radio  value="{{ncm.ncm}}"></ion-radio>
+            <ion-label text-wrap>{{ncm.descricao}}</ion-label>
+            <ion-radio   value="{{ncm.ncm}}"></ion-radio>
           </ion-item>
         </div>
-          
+        <ion-item text-center>
+          <button [disabled]="resultGroup.invalid" ion-button full block color="danger">selecionar</button>
+        </ion-item>
         </ion-list>
       </form>
     </div>
-
+</div>
 </ion-content>

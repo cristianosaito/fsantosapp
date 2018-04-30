@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NcmProvider } from '../../providers/ncm/ncm';
 import { Validators, FormBuilder } from '@angular/forms';
+import { HomePage } from "../home/home";
 /**
  * Generated class for the SearchPage page.
  *
@@ -25,6 +26,7 @@ export class SearchPage {
   ncmGroup: any = {};
   termoGroup: any = {};
   catGroup: any = {};
+  resultGroup:any = {};
 
   public lista_ncm = new Array<any>();
 
@@ -42,6 +44,9 @@ export class SearchPage {
     });
     this.catGroup = this.formBuilder.group({
       categoria: ['', Validators.required]
+    });
+    this.resultGroup = this.formBuilder.group({
+      result: ['', Validators.required]
     });
   }
   
@@ -111,6 +116,14 @@ export class SearchPage {
         console.log(error);
       }
     )
+  }
+
+  submitFormResult(){
+    let resultado: any = this.resultGroup.value;
+    resultado = resultado.result;
+    this.navCtrl.push(HomePage,{ncm:resultado});
+
+    
   }
 
   ionViewDidLoad() {

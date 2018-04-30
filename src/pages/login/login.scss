@@ -1,3 +1,16 @@
 page-login {
+    .content{
+       background-image: url('../assets/imgs/import.jpg');
+       background-repeat: none;
+       background-size: cover;
+    }
 
+    .login_form{
+        margin-top: 15%;
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }

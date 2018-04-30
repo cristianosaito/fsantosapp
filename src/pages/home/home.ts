@@ -4,7 +4,8 @@ import { NcmProvider } from '../../providers/ncm/ncm';
 import { CalculoProvider } from '../../providers/calculo/calculo';
 import { ResultPage } from '../result/result';
 import { SearchPage} from '../search/search';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -18,8 +19,11 @@ export class HomePage {
   simulacao: any = {};
   showForm:boolean = true;
   showResult:boolean = false;
- 
+  ncm_get:any;
+  ncm_search:any;
+   
   constructor(
+    public navParams: NavParams,
     public navCtrl: NavController,
     public ncmProvider: NcmProvider,
     public calculoProvider: CalculoProvider,
@@ -35,6 +39,13 @@ export class HomePage {
      origem:['',Validators.required],
      destino:['',Validators.required]
    })
+
+    this.ncm_get = this.navParams.get('ncm');
+
+    if (this.ncm_get != null) {
+      this.ncm_search = this.ncm_get;
+    }
+        
   }
 
   submitFormSimulacao(){
@@ -82,4 +93,6 @@ export class HomePage {
   goToSearchPage() {
     this.navCtrl.push(SearchPage);
   }
+
+
 }

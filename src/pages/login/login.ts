@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Usuario } from '../../models/user';
+import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { TabsPage } from '../tabs/tabs';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -15,51 +19,38 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LoginPage {
 
-  email:any;
-  password:any;
+  usuario = {} as Usuario;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public angularFireAuth: AngularFireAuth) {
+  constructor(
+    private toastCtrl: ToastController,
+    private ofAuth: AngularFireAuth,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
   }
 
-  sendEmailVerification() {
-    this.angularFireAuth.authState.subscribe(user => {
-      user.sendEmailVerification()
-        .then(() => {
-          console.log('email sent');
-        })
-    });
-  }
+  async login(usuario: Usuario) {
 
-  register(email, password) {
-    this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        this.sendEmailVerification()
+    let toast = this.toastCtrl.create({duration:3000, position:'top'});
+  
+      this.ofAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.password)
+      .then(data => {
+        console.log(data);
+        toast.setMessage('Usuário logado com sucesso');
+        toast.present();
+        this.navCtrl.setRoot(TabsPage);
       })
-      .catch((err) => {
-        //Do as you please here
+      .catch(error => {
+        console.log(error);
+        toast.setMessage('Erro no login. Confira os seus dados!');
+        toast.present();
+
       });
   }
-
-  login(username, password) {
-    this.angularFireAuth.auth.signInWithEmailAndPassword(username, password)
-      .then((user) => {
-        if (user.emailVerified) {
-          // Redirect the user here 
-        } else {
-          // Tell the user to have a look at its mailbox 
-        }
-      });
-  }
-
-  sendPassword(email) {
-    this.angularFireAuth.auth.sendPasswordResetEmail(email)
-      .then(() => {
-        console.log('email sent');
-      })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+     
+     
+  goRegisterPage() {
+    this.navCtrl.push(RegisterPage);
   }
 
 }
