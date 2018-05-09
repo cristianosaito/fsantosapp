@@ -36,14 +36,23 @@
     QUANTIDADE: {{this.calculoProvider.quantidade}}
   </ion-item>
   <ion-item>
-    TOTAL EM REAL - R$: {{this.calculoProvider.total_real_formatado}}
+    PREÇO FOB: R$ {{this.calculoProvider.fob_formatado}}
   </ion-item>
-    <ion-item>
-      ORIGEM: {{this.calculoProvider.origem}}
-    </ion-item>
-    <ion-item>
-      DESTINO: {{this.calculoProvider.destino}}
-    </ion-item>
+  <ion-item>
+    ORIGEM: {{this.calculoProvider.origem}}
+  </ion-item>
+  <ion-item>
+    DESTINO: {{this.calculoProvider.destino}}
+  </ion-item>
+  <ion-item>
+    MODAL: {{this.calculoProvider.modal}}
+  </ion-item>
+  <ion-item>
+    FRETE: R$ {{this.calculoProvider.frete_formatado}} / SEGURO: R$ {{this.calculoProvider.seguro_formatado}}
+  </ion-item>
+  <ion-item>
+    VALOR CIF: R$ {{this.calculoProvider.cif_formatado}}
+  </ion-item>
   <ion-item>
     II: {{this.calculoProvider.tec*100}}% - R$ {{this.calculoProvider.total_tec_formatado}}
   </ion-item>
@@ -58,6 +67,9 @@
   </ion-item>
   <ion-item>
     ICMS: {{this.calculoProvider.icms*100}}% - R$ {{this.calculoProvider.total_icms_formatado}}
+  </ion-item>
+  <ion-item>
+    VALOR TOTAL: R$ {{this.calculoProvider.total_real_formatado}}
   </ion-item>
 </ion-list>
 </ion-content>

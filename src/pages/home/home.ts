@@ -71,11 +71,10 @@ export class HomePage {
        let tec = obj_retorno.TEC;
        let pis = obj_retorno.PIS;
        let cofins = obj_retorno.COFINS;
-       let modal = obj_retorno.modal
        let moeda = obj_retorno.moeda;
        let cambio = obj_retorno.valor;
 
-       this.calculoProvider.setImpostos(categoria,descricao,ipi,tec,pis,cofins,modal,moeda,cambio);
+       this.calculoProvider.setImpostos(categoria,descricao,ipi,tec,pis,cofins,moeda,cambio);
 
       }, error => {
         console.log(error);
