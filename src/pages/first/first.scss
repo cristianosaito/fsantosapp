@@ -1,0 +1,58 @@
+page-first {
+
+    .inputncm > ion-input{
+       border: 1px solid #ccc;
+    }
+
+    .exemplo{
+        margin-top:-3%;
+        color:#ccc;
+        font-size: 0.8em;
+    }
+    img{
+        max-width: 60%;
+    }
+
+    .inputncm{
+         margin: 10% 0 0 0;
+    }
+
+    .titulo{
+        margin: 10% 0 5%;
+    }
+
+    .destaque_linha1 ion-col{
+        border-bottom: 1px solid #ccc;
+        padding: 5%;
+    }
+
+    .destaque_linha1 ion-col:first-child{
+        border-right: 1px solid #ccc;
+        padding: 5%;
+    }
+
+    .destaque_linha1 ion-col:last-child{
+        border-left: 1px solid #ccc;
+        padding: 5%;
+    }
+
+    .destaque_linha2 ion-col{
+        padding: 5%;
+    }
+
+    .destaque_linha2 ion-col:first-child{
+        border-right: 1px solid #ccc;
+        padding: 5%;
+    }
+
+    .destaque_linha2 ion-col:last-child{
+        border-left: 1px solid #ccc;
+        padding: 5%;
+    }
+
+   
+}
+
+
+
+

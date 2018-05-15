@@ -9,13 +9,18 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AboutPage } from '../pages/about/about';
 import { CotacaoPage } from '../pages/cotacao/cotacao';
 import { ContactPage } from '../pages/contact/contact';
-
+import { IntroPage } from '../pages/intro/intro';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { FirstPage } from '../pages/first/first'
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SearchPage } from '../pages/search/search';
 import { ResultPage } from '../pages/result/result';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { FaqPage } from '../pages/faq/faq';
+import { PoliticaPage } from '../pages/politica/politica';
+import { HistoricoPage } from '../pages/historico/historico';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NcmProvider } from '../providers/ncm/ncm';
@@ -34,7 +39,13 @@ import { firebaseConfig} from '../config/firebaseConfig';
     ResultPage,
     LoginPage,
     RegisterPage,
-    ContactPage
+    ContactPage,
+    IntroPage,
+    PerfilPage,
+    FirstPage,
+    FaqPage,
+    PoliticaPage,
+    HistoricoPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +65,13 @@ import { firebaseConfig} from '../config/firebaseConfig';
     ResultPage,
     LoginPage,
     RegisterPage,
-    ContactPage
+    ContactPage,
+    IntroPage,
+    PerfilPage,
+    FirstPage,
+    FaqPage,
+    PoliticaPage,
+    HistoricoPage
   ],
   providers: [
     StatusBar,

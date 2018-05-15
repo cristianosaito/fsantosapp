@@ -27,6 +27,7 @@ export class SearchPage {
   termoGroup: any = {};
   catGroup: any = {};
   resultGroup:any = {};
+  ncm_get:any;
 
   public lista_ncm = new Array<any>();
 
@@ -48,6 +49,20 @@ export class SearchPage {
     this.resultGroup = this.formBuilder.group({
       result: ['', Validators.required]
     });
+
+    this.ncm_get = this.navParams.get('ncm');
+
+    if (this.ncm_get != null) {
+      if (this.ncm_get.search(/[\D]/)) {
+        this.showFormNCM();
+        this.submitFormNCMParamentro(this.ncm_get);
+        
+      }else{
+        this.showFormTermo();
+        this.submitFormTermoParamentro(this.ncm_get);
+
+      }      
+    }
   }
   
   showFormNCM(){
@@ -85,9 +100,37 @@ export class SearchPage {
       }
     )
   }
+
+  submitFormNCMParamentro(ncm) {
+      this.NcmProvider.getNcmByNumber(ncm).subscribe(
+      data => {
+        const response = (data as any);
+        const obj_retorno = JSON.parse(response._body);
+        this.lista_ncm = obj_retorno;
+        console.log(obj_retorno);
+        this.showCatReturn = true;
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
   submitFormTermo() {
     let termo: any = this.termoGroup.value;
     termo = termo.termo;
+    this.NcmProvider.getNcmByTermo(termo).subscribe(
+      data => {
+        const response = (data as any);
+        const obj_retorno = JSON.parse(response._body);
+        this.lista_ncm = obj_retorno;
+        this.showCatReturn = true;
+        console.log(obj_retorno);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  submitFormTermoParamentro(termo) {
     this.NcmProvider.getNcmByTermo(termo).subscribe(
       data => {
         const response = (data as any);

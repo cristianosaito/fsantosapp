@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { LoginPage } from '../login/login';
-import { AboutPage } from '../about/about';
 import { HomePage } from '../home/home';
+import { FirstPage } from '../first/first'; 
+import { LoginPage } from '../login/login';
+import { PerfilPage } from '../perfil/perfil';
 import { CotacaoPage } from "../cotacao/cotacao";
 import { SearchPage } from '../search/search';
 import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
@@ -13,10 +14,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = CotacaoPage;
+  tab1Root = FirstPage;
+  tab2Root = CotacaoPage;
+  tab3Root = HomePage;
   tab4Root = SearchPage;
+  tab5Root = PerfilPage;
 
   constructor(
     private toastCtrl: ToastController,

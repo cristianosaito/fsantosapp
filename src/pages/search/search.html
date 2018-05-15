@@ -26,7 +26,7 @@
       <ion-list>
         <ion-item text-center>
           <ion-label stacked>Digite o número do NCM</ion-label>
-          <ion-input type="text" name="ncm" id="ncm_input" formControlName="ncm"></ion-input>
+          <ion-input type="text" name="ncm" id="ncm_input" formControlName="ncm" value="{{ncm_get}}"></ion-input>
         </ion-item>
         <ion-item text-center>
           <button [disabled]="ncmGroup.invalid" ion-button full block color="danger">pesquisar</button>
@@ -40,7 +40,7 @@
       <ion-list>
         <ion-item text-center>
           <ion-label stacked>Digite o nome do produto</ion-label>
-          <ion-input type="text" name="termo" id="termo_input" formControlName="termo"></ion-input>
+          <ion-input type="text" name="termo" id="termo_input" formControlName="termo" value="{{ncm_get}}"></ion-input>
         </ion-item>
         <ion-item text-center>
           <button [disabled]="termoGroup.invalid" ion-button full block color="danger">pesquisar</button>
