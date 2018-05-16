@@ -1,3 +1,13 @@
 page-register {
-
+    img{
+        max-width: 60%;
+    }
+     .login_form{
+        margin: 15% 0;
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }

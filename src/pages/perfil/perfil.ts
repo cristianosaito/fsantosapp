@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { IntroPage } from '../intro/intro';
 import { AboutPage } from "../about/about";
@@ -26,7 +26,8 @@ export class PerfilPage {
     private ofAuth: AngularFireAuth,
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private app: App
 ) {
   }
 
@@ -77,8 +78,9 @@ export class PerfilPage {
     let toast = this.toastCtrl.create({ duration: 3000, position: 'top' });
     toast.setMessage('Logout efetuado com sucesso');
     toast.present();
+    localStorage.removeItem("currentUser");
+    this.app.getRootNav().setRoot(IntroPage);
     this.navCtrl.setRoot(IntroPage);
-
   }
 
   ionViewDidLoad() {

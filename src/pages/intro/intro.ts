@@ -17,7 +17,11 @@ import { LoginPage } from '../login/login';
 })
 export class IntroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams
+  ) {
+    
   }
 
   goRegisterPage() {

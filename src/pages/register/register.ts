@@ -35,8 +35,6 @@ export class RegisterPage {
       })
       .catch(error=>{
         console.log(error);
-
-
       });
   }
 }

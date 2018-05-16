@@ -1,4 +1,8 @@
 page-login {
+
+    img{
+        max-width: 60%;
+    }
     .content{
        //background-image: url('../assets/imgs/import.jpg');
        background-repeat: none;
@@ -6,7 +10,7 @@ page-login {
     }
 
     .login_form{
-        margin-top: 15%;
+        margin: 15% 0;
         align-content: center;
         display: flex;
         flex-direction: column;

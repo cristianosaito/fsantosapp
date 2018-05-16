@@ -5,7 +5,8 @@ import { LoginPage } from '../login/login';
 import { PerfilPage } from '../perfil/perfil';
 import { CotacaoPage } from "../cotacao/cotacao";
 import { SearchPage } from '../search/search';
-import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IntroPage } from '../intro/intro';
+import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -35,41 +36,12 @@ export class TabsPage {
       data =>
         {
           if (!data && !data.email && !data.uid) {
-            this.navCtrl.setRoot(LoginPage);
+            this.navCtrl.setRoot(IntroPage);
 
           }
         }
     );
   }
 
-  confirmLogout(){
-    let alert = this.alertCtrl.create({
-      title: 'Logout',
-      message: 'Deseja realmente sair?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Sair',
-          handler: () => {
-            this.logOut();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
-  logOut(){
-    this.ofAuth.auth.signOut();
-    let toast = this.toastCtrl.create({ duration: 3000, position: 'top' });
-    toast.setMessage('Logout efetuado com sucesso');
-    toast.present();
-    this.navCtrl.setRoot(LoginPage);
-
-  }
+ 
 }

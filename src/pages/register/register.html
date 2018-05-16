@@ -15,16 +15,23 @@
 
 <ion-content padding text-center>
     <img src="assets/imgs/logo.png" />
-
+<div class="login_form">
+<ion-item>
+  <ion-label floating>Nome / Razão Social</ion-label>
+  <ion-input type="text" [(ngModel)]="usuario.nome"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label floating>CPF / CNPJ</ion-label>
+  <ion-input type="text" [(ngModel)]="usuario.cpf"></ion-input>
+</ion-item>
 <ion-item>
   <ion-label floating>Email</ion-label>
   <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>
 </ion-item>
-
 <ion-item>
   <ion-label floating>Senha</ion-label>
   <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
 </ion-item>
-
-<button ion-button full block color="danger" (click)="register(usuario)"> Registrar</button>
+</div>
+<button ion-button full block (click)="register(usuario)"> Registrar</button>
 </ion-content>
