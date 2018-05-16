@@ -7,6 +7,8 @@ import { ContactPage } from "../contact/contact";
 import { FaqPage } from '../faq/faq';
 import { PoliticaPage } from '../politica/politica';
 import { HistoricoPage } from '../historico/historico';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { Profile } from "../../models/profile";
 /**
  * Generated class for the PerfilPage page.
  *
@@ -21,7 +23,12 @@ import { HistoricoPage } from '../historico/historico';
 })
 export class PerfilPage {
 
+  profileData: AngularFireObject <Profile>;
+  nome: string;
+  cpf: string;
+
   constructor(
+    private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
     private ofAuth: AngularFireAuth,
     public navCtrl: NavController, 
@@ -84,7 +91,19 @@ export class PerfilPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
+    
+    this.ofAuth.authState.take(1).subscribe(
+      data =>{
+        this.profileData = this.afDatabase.object(`profile/${data.uid}`);
+        this.profileData.valueChanges().subscribe(profile=>{
+          this.nome = profile.nome;
+          this.cpf = profile.cpf;
+          
+        });
+        
+        
+      }
+    )
   }
 
 }

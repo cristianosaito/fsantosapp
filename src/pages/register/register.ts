@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Usuario } from '../../models/user';
-import { TabsPage } from '../tabs/tabs';
-
+import { ProfilePage } from '../profile/profile';
+import { LoginPage } from "../login/login";
 import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Generated class for the RegisterPage page.
@@ -18,7 +18,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class RegisterPage {
 
-  usuario = {} as Usuario;
+  user = {} as Usuario;
 
   constructor(
     private ofAuth: AngularFireAuth,
@@ -27,11 +27,11 @@ export class RegisterPage {
   ) {
   }
 
-  async register(usuario: Usuario) {
-      this.ofAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.password)
+  async register(user: Usuario) {
+      this.ofAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then(data =>{
         console.log(data);
-        this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.setRoot(ProfilePage);
       })
       .catch(error=>{
         console.log(error);

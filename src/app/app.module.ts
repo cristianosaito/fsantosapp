@@ -21,11 +21,14 @@ import { RegisterPage } from '../pages/register/register';
 import { FaqPage } from '../pages/faq/faq';
 import { PoliticaPage } from '../pages/politica/politica';
 import { HistoricoPage } from '../pages/historico/historico';
+import { ProfilePage } from '../pages/profile/profile';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NcmProvider } from '../providers/ncm/ncm';
 import { CalculoProvider } from '../providers/calculo/calculo';
 import { firebaseConfig} from '../config/firebaseConfig';
+import { AngularFireDatabaseModule } from "angularfire2/database";
 
 
 @NgModule({
@@ -45,7 +48,8 @@ import { firebaseConfig} from '../config/firebaseConfig';
     FirstPage,
     FaqPage,
     PoliticaPage,
-    HistoricoPage
+    HistoricoPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,7 @@ import { firebaseConfig} from '../config/firebaseConfig';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,7 +76,8 @@ import { firebaseConfig} from '../config/firebaseConfig';
     FirstPage,
     FaqPage,
     PoliticaPage,
-    HistoricoPage
+    HistoricoPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

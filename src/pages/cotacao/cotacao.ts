@@ -22,9 +22,14 @@ import { Observable } from 'rxjs/Observable';
 export class CotacaoPage {
 
   dolar: any ;
+  dolar_ontem:any;
   euro: any ;
+  euro_ontem:any;
   yene: any ;
+  yene_ontem:any;
   libra: any ;
+  libra_ontem:any;
+
   data:Date =new Date();
   data_show: string = this.data.getDay()+'/'+this.data.getMonth()+'/'+this.data.getFullYear();
 
@@ -48,6 +53,8 @@ export class CotacaoPage {
         const response = (data as any);
         const obj_retorno = JSON.parse(response._body);
         this.setMoedas(moeda,obj_retorno);
+        console.log(obj_retorno);
+      
       }
     );
 
