@@ -16,19 +16,19 @@
     <ion-col col-8>
       <ion-item text-left>
       <ion-label text-wrap stacked>Qual valor deseja converter?</ion-label>
-      <ion-input type="text" ></ion-input>
+      <ion-input type="text"  [(ngModel)]="valor1"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4>
       <ion-list no-lines>
       <ion-item text-left>
       <ion-label floating>Moeda</ion-label>   
-      <ion-select [(ngModel)]="moeda_1">
-        <ion-option value="0" selected>real</ion-option>
-        <ion-option value="1">dólar</ion-option>
-        <ion-option value="21619">euro</ion-option>
-        <ion-option value="21621">yene</ion-option>
-        <ion-option value="21623">libra</ion-option>
+      <ion-select [(ngModel)]="moeda1">
+        <ion-option value="real" >real</ion-option>
+        <ion-option value="dolar">dólar</ion-option>
+        <ion-option value="euro">euro</ion-option>
+        <ion-option value="yene">yene</ion-option>
+        <ion-option value="libra">libra</ion-option>
       </ion-select>
     </ion-item>
     </ion-list>
@@ -38,21 +38,22 @@
     <ion-col col-8>
     <ion-item text-left>
         <ion-label text-wrap stacked>Para qual moeda deseja converter?</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" value={{valor2}}></ion-input>
     </ion-item>
     </ion-col>
     <ion-col col-4>
       <ion-list no-lines>
       <ion-item text-left>
       <ion-label floating>Moeda</ion-label>
-      <ion-select [(ngModel)]="moeda_2">
-        <ion-option value="0" selected>real</ion-option>
-        <ion-option value="1">dólar</ion-option>
-        <ion-option value="21619">euro</ion-option>
-        <ion-option value="21621">yene</ion-option>
-        <ion-option value="21623">libra</ion-option>
+      <ion-select [(ngModel)]="moeda2">
+        <ion-option value="real" >real</ion-option>
+        <ion-option value="dolar">dólar</ion-option>
+        <ion-option value="euro">euro</ion-option>
+        <ion-option value="yene">yene</ion-option>
+        <ion-option value="libra">libra</ion-option>
       </ion-select>
     </ion-item>
+  <button ion-button full block (click)="converteValor()"> converte</button>
     </ion-list>
     </ion-col>
   </ion-row>

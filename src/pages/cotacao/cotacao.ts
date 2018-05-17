@@ -35,8 +35,10 @@ export class CotacaoPage {
   libra: any ;
   libra_ontem:any;
 
-  moeda_1:any;
-  moeda_2:any;
+  valor1:any;
+  valor2:any;
+  moeda1: any;
+  moeda2: any;
 
   data_show: any ;
   
@@ -60,11 +62,9 @@ export class CotacaoPage {
         const response = (data as any);
         const obj_retorno = JSON.parse(response._body);
         this.setMoedas(moeda, obj_retorno.valor_dia, obj_retorno.valor_dia_anterior);
-        console.log(obj_retorno);
-      
+    
       }
     );
-
   }
 
   setMoedas(moeda:any,dado:any, dado2:any){
@@ -82,7 +82,6 @@ export class CotacaoPage {
       icon = "";
 
     }
-console.log(valor,valor2,icon);
 
     switch (moeda) {
       case 1:
@@ -135,6 +134,61 @@ dataFormatada(){
   var ano = data.getFullYear();
 
   return dias + "/" + mess + "/" + ano;
+}
+
+converteValor(){
+
+  console.log(this.valor1, this.moeda1, this.moeda2);
+  
+  var valor_real: number;
+  var result: number;
+
+  switch (this.moeda1) {
+    case 'dolar':
+      valor_real = parseFloat(this.valor1) * parseFloat(this.dolar);
+      break;
+
+    case 'libra':
+      valor_real = parseFloat(this.valor1) * parseFloat(this.libra);
+      break;
+
+    case 'yene':
+      valor_real = parseFloat(this.valor1) * parseFloat(this.yene);
+      break;
+
+    case 'euro':
+      valor_real = parseFloat(this.valor1) * parseFloat(this.euro);
+      break;
+
+    case 'real':
+      valor_real = parseFloat(this.valor1);
+      break;
+  }
+
+  switch (this.moeda2) {
+    case 'dolar':
+      result = valor_real * parseFloat(this.dolar);
+      break;
+
+    case 'libra':
+      result = valor_real * parseFloat(this.libra);
+      break;
+
+    case 'yene':
+      result = valor_real * parseFloat(this.yene);
+      break;
+
+    case 'euro':
+      result = valor_real * parseFloat(this.euro);
+      break;
+
+    case 'real':
+      result = valor_real;
+      break;
+  }
+
+  this.valor2 = result;
+
 }
   ionViewDidLoad() {
   
