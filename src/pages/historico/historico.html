@@ -14,5 +14,24 @@
 
 
 <ion-content padding>
-
+<ion-list>  
+<ion-item *ngFor="let item of historicolist">
+   <ion-row text-justify>
+    <ion-col text-wrap>
+      NCM: {{item.historico.ncm}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      CATEGORIA: {{item.historico.categoria}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      DESCRIÇÃO: {{item.historico.descricao}}
+    </ion-col>
+  </ion-row>
+</ion-item>
+</ion-list>
+<button ion-button color="danger" (click)='apagaHistorico()'>apagar histórico</button>
 </ion-content>

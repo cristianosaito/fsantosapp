@@ -5,7 +5,8 @@ import { CalculoProvider } from '../../providers/calculo/calculo';
 import { ResultPage } from '../result/result';
 import { SearchPage} from '../search/search';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-
+import { HistoricoProvider } from "../../providers/historico/historico";
+import { Historico } from "../../models/historico";
 
 @Component({
   selector: 'page-home',
@@ -15,6 +16,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
   ]
 })
 export class HomePage {
+  historico: Historico;
 
   simulacao: any = {};
   showForm:boolean = true;
@@ -27,7 +29,8 @@ export class HomePage {
     public navCtrl: NavController,
     public ncmProvider: NcmProvider,
     public calculoProvider: CalculoProvider,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private historicoProvider: HistoricoProvider
   ) {
    this.simulacao = this.formBuilder.group({
      ncm_number:['',Validators.required],
@@ -75,6 +78,13 @@ export class HomePage {
        let cambio = obj_retorno.valor;
 
        this.calculoProvider.setImpostos(categoria,descricao,ipi,tec,pis,cofins,moeda,cambio);
+
+        this.historico = new Historico();
+        this.historico.ncm = this.calculoProvider.ncm;
+        this.historico.categoria = categoria;
+        this.historico.descricao = descricao;
+
+        this.historicoProvider.insert(this.historico);
 
       }, error => {
         console.log(error);

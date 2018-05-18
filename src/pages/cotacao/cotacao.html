@@ -38,14 +38,14 @@
     <ion-col col-8>
     <ion-item text-left>
         <ion-label text-wrap stacked>Para qual moeda deseja converter?</ion-label>
-        <ion-input type="text" value={{valor2}}></ion-input>
+        <ion-input type="text" value={{valor2}} disabled></ion-input>
     </ion-item>
     </ion-col>
     <ion-col col-4>
       <ion-list no-lines>
       <ion-item text-left>
       <ion-label floating>Moeda</ion-label>
-      <ion-select [(ngModel)]="moeda2">
+      <ion-select [(ngModel)]="moeda2" (ionChange)="converteValor()">
         <ion-option value="real" >real</ion-option>
         <ion-option value="dolar">dólar</ion-option>
         <ion-option value="euro">euro</ion-option>
@@ -53,7 +53,6 @@
         <ion-option value="libra">libra</ion-option>
       </ion-select>
     </ion-item>
-  <button ion-button full block (click)="converteValor()"> converte</button>
     </ion-list>
     </ion-col>
   </ion-row>

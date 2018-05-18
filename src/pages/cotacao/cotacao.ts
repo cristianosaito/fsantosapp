@@ -27,12 +27,16 @@ export class CotacaoPage {
   euroIcon: string;
 
   dolar: any ;
+  dolar_n:any;
   dolar_ontem:any;
   euro: any ;
+  euro_n:any;
   euro_ontem:any;
   yene: any ;
+  yene_n:any;
   yene_ontem:any;
   libra: any ;
+  libra_n:any;
   libra_ontem:any;
 
   valor1:any;
@@ -62,7 +66,6 @@ export class CotacaoPage {
         const response = (data as any);
         const obj_retorno = JSON.parse(response._body);
         this.setMoedas(moeda, obj_retorno.valor_dia, obj_retorno.valor_dia_anterior);
-    
       }
     );
   }
@@ -74,40 +77,45 @@ export class CotacaoPage {
 
     let icon;
 
-    if (valor > valor2) {
+    if (parseFloat(dado) > parseFloat(dado2)) {
       icon = "arrow-round-up";
-    } else if (valor < valor2){
+    } else if (parseFloat(dado) < parseFloat(dado2)){
       icon = "arrow-round-down";
-    } else if (valor == valor2){
-      icon = "";
-
+    } else if (parseFloat(dado) == parseFloat(dado2)){
+      icon = "remove";
     }
 
     switch (moeda) {
       case 1:
+        this.dolar_n = dado;
         this.dolar = valor;
         this.dolar_ontem = valor2;
         this.dolarIcon = icon;
         break;
     
       case 21619:
+        this.euro_n = dado;
         this.euro = valor;
         this.euro_ontem = valor2;
         this.euroIcon = icon;
         break;
 
       case 21623:
+        this.libra_n = dado;
         this.libra = valor;
         this.libra_ontem = valor2;
         this.libraIcon = icon;
         break;
 
       case 21621:
+        this.yene_n = dado;
         this.yene = valor;
         this.yene_ontem = valor2;
         this.yeneIcon = icon;
         break;
     }
+
+    
   }
 
   formataReal(num) {
@@ -143,21 +151,26 @@ converteValor(){
   var valor_real: number;
   var result: number;
 
+  if (this.moeda1 == this.moeda2) {
+    this.valor2 = this.valor1;
+    return;
+  }
+
   switch (this.moeda1) {
     case 'dolar':
-      valor_real = parseFloat(this.valor1) * parseFloat(this.dolar);
+      valor_real = parseFloat(this.valor1) * parseFloat(this.dolar_n);
       break;
 
     case 'libra':
-      valor_real = parseFloat(this.valor1) * parseFloat(this.libra);
+      valor_real = parseFloat(this.valor1) * parseFloat(this.libra_n);
       break;
 
     case 'yene':
-      valor_real = parseFloat(this.valor1) * parseFloat(this.yene);
+      valor_real = parseFloat(this.valor1) * parseFloat(this.yene_n);
       break;
 
     case 'euro':
-      valor_real = parseFloat(this.valor1) * parseFloat(this.euro);
+      valor_real = parseFloat(this.valor1) * parseFloat(this.euro_n);
       break;
 
     case 'real':
@@ -187,7 +200,7 @@ converteValor(){
       break;
   }
 
-  this.valor2 = result;
+  this.valor2 = this.formataReal(result);
 
 }
   ionViewDidLoad() {

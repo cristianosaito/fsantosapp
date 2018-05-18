@@ -22,13 +22,15 @@ import { FaqPage } from '../pages/faq/faq';
 import { PoliticaPage } from '../pages/politica/politica';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ProfilePage } from '../pages/profile/profile';
-
+import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NcmProvider } from '../providers/ncm/ncm';
 import { CalculoProvider } from '../providers/calculo/calculo';
 import { firebaseConfig} from '../config/firebaseConfig';
 import { AngularFireDatabaseModule } from "angularfire2/database";
+import { HistoricoProvider } from '../providers/historico/historico';
+import { DatePipe} from '@angular/common';
 
 
 @NgModule({
@@ -55,6 +57,7 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule
@@ -84,7 +87,9 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NcmProvider,
-    CalculoProvider
+    CalculoProvider,
+    HistoricoProvider,
+    DatePipe
   ]
 })
 export class AppModule {}
