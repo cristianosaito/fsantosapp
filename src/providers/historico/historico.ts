@@ -20,6 +20,7 @@ export class HistoricoProvider {
 
   public insert(historico: Historico) {
     let key = this.datepipe.transform(new Date(), "ddMMyyyyHHmms");
+    historico.date = this.datepipe.transform(new Date(), "dd/MM/yyyy");
     return this.save(key, historico);
   }
 

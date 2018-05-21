@@ -14,12 +14,20 @@
 
 
 <ion-content padding text-center>
-    <img src="assets/imgs/logo.png" />
+    
 <div class="fundo">
   <h3>Escolha o Tipo de pesquisa</h3>
-  <button ion-button full (click)="showFormNCM();">NCM</button>
-  <button ion-button full (click)="showFormTermo();">Termo</button>
-  <button ion-button full (click)="showFormCat();">Categoria</button>
+  <ion-row>
+    <ion-col>
+      <button ion-button full (click)="showFormNCM();">NCM</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full (click)="showFormTermo();">Termo</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full (click)="showFormCat();">Categoria</button>
+    </ion-col>
+  </ion-row>
 
   <div *ngIf="showNcmDiv">
     <form [formGroup]="ncmGroup" id='form_ncm' (ngSubmit)="submitFormNCM()" accept-charset="utf-8">

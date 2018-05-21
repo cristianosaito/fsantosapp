@@ -1,4 +1,5 @@
 export class Historico {
+    date: string;
     ncm:string;
     categoria: string;
     descricao: string;

@@ -33,6 +33,8 @@ export class ProfilePage {
   createProfile(){
     this.afAuth.authState.take(1).subscribe(
       auth =>{
+        this.profile.email = auth.email;
+        console.log(auth.email);
         this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
           .then(() => this.navCtrl.setRoot(TabsPage))
       }
@@ -40,7 +42,7 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    
   }
 
 }

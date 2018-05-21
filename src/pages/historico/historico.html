@@ -7,28 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>historico</ion-title>
+    <ion-title>Histórico</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding text-center>
+  <h3>Sua últimas simulações</h3>
 <ion-list>  
 <ion-item *ngFor="let item of historicolist">
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>Data: </b>{{item.historico.date}}
+    </ion-col>
+  </ion-row>
    <ion-row text-justify>
     <ion-col text-wrap>
-      NCM: {{item.historico.ncm}}
+      <b>NCM: </b>{{item.historico.ncm}}
     </ion-col>
   </ion-row>
   <ion-row text-justify>
     <ion-col text-wrap>
-      CATEGORIA: {{item.historico.categoria}}
+      <b>CATEGORIA: </b>{{item.historico.categoria}}
     </ion-col>
   </ion-row>
   <ion-row text-justify>
     <ion-col text-wrap>
-      DESCRIÇÃO: {{item.historico.descricao}}
+      <b>DESCRIÇÃO: </b>{{item.historico.descricao}}
     </ion-col>
   </ion-row>
 </ion-item>

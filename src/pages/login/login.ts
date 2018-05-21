@@ -35,7 +35,7 @@ export class LoginPage {
   
       this.ofAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.password)
       .then(data => {
-        console.log(data);
+        console.log(data.email);
         toast.setMessage('Usuário logado com sucesso');
         toast.present();
         this.navCtrl.setRoot(TabsPage);

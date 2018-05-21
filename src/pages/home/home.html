@@ -6,7 +6,6 @@
 </ion-header>
 
 <ion-content padding text-center>
-  <img src="assets/imgs/logo.png" />
     <form *ngIf="showForm" [formGroup]='simulacao' (ngSubmit)='submitFormSimulacao()' id='form_tax' accept-charset="utf-8">
         <ion-grid>
           <ion-row align-items-center>
@@ -122,7 +121,7 @@
         <ion-row align-items-center>
           <ion-col>
           <div text-center>
-            <button [disabled]="simulacao.invalid" ion-button full block color="danger">pesquisar</button>
+            <button [disabled]="simulacao.invalid" ion-button full block color="primary">pesquisar</button>
           </div>
           </ion-col>
         </ion-row>

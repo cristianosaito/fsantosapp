@@ -80,6 +80,7 @@ export class HomePage {
        this.calculoProvider.setImpostos(categoria,descricao,ipi,tec,pis,cofins,moeda,cambio);
 
         this.historico = new Historico();
+       
         this.historico.ncm = this.calculoProvider.ncm;
         this.historico.categoria = categoria;
         this.historico.descricao = descricao;
