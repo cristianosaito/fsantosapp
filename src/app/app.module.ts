@@ -22,6 +22,7 @@ import { FaqPage } from '../pages/faq/faq';
 import { PoliticaPage } from '../pages/politica/politica';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ProfilePage } from '../pages/profile/profile';
+import { EditPerfilPage } from "../pages/edit-perfil/edit-perfil";
 import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +32,7 @@ import { firebaseConfig} from '../config/firebaseConfig';
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { HistoricoProvider } from '../providers/historico/historico';
 import { DatePipe} from '@angular/common';
-
+import { Camera, CameraOptions } from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DatePipe} from '@angular/common';
     FaqPage,
     PoliticaPage,
     HistoricoPage,
-    ProfilePage
+    ProfilePage,
+    EditPerfilPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { DatePipe} from '@angular/common';
     FaqPage,
     PoliticaPage,
     HistoricoPage,
-    ProfilePage
+    ProfilePage,
+    EditPerfilPage
   ],
   providers: [
     StatusBar,
@@ -89,7 +92,8 @@ import { DatePipe} from '@angular/common';
     NcmProvider,
     CalculoProvider,
     HistoricoProvider,
-    DatePipe
+    DatePipe,
+    Camera
   ]
 })
 export class AppModule {}

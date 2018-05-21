@@ -9,6 +9,7 @@ import { PoliticaPage } from '../politica/politica';
 import { HistoricoPage } from '../historico/historico';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Profile } from "../../models/profile";
+import { EditPerfilPage } from "../edit-perfil/edit-perfil";
 /**
  * Generated class for the PerfilPage page.
  *
@@ -26,6 +27,7 @@ export class PerfilPage {
   profileData: AngularFireObject <Profile>;
   nome: string;
   cpf: string;
+  imagem: string ="assets/imgs/user.png";
 
   constructor(
     private afDatabase: AngularFireDatabase,
@@ -36,6 +38,16 @@ export class PerfilPage {
     private alertCtrl: AlertController,
     private app: App
 ) {
+
+  if (this.navParams.get('img')){
+    this.imagem = this.navParams.get('img');
+
+  }
+
+  }
+
+  goEditPerfilPage() {
+    this.navCtrl.push(EditPerfilPage);
   }
 
   goAboutPage() {
@@ -98,12 +110,10 @@ export class PerfilPage {
         this.profileData.valueChanges().subscribe(profile=>{
           this.nome = profile.nome;
           this.cpf = profile.cpf;
-          
         });
-        
-        
       }
     )
   }
 
+ 
 }
