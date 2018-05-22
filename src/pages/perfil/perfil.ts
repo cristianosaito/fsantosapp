@@ -10,6 +10,8 @@ import { HistoricoPage } from '../historico/historico';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Profile } from "../../models/profile";
 import { EditPerfilPage } from "../edit-perfil/edit-perfil";
+import { ImageProvider } from '../../providers/image/image';
+
 /**
  * Generated class for the PerfilPage page.
  *
@@ -21,6 +23,9 @@ import { EditPerfilPage } from "../edit-perfil/edit-perfil";
 @Component({
   selector: 'page-perfil',
   templateUrl: 'perfil.html',
+    providers: [
+      ImageProvider
+    ]
 })
 export class PerfilPage {
 
@@ -36,18 +41,38 @@ export class PerfilPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private alertCtrl: AlertController,
-    private app: App
+    private app: App,
+    private imageSrv: ImageProvider
 ) {
-
-  if (this.navParams.get('img')){
-    this.imagem = this.navParams.get('img');
-
+    if (this.navParams.get('img')){
+      this.imagem = this.navParams.get('img');
+      this.saveImage();
+    }else{
+      this.loadImage();
+    }
   }
 
+  saveImage(){
+    this.ofAuth.authState.take(1).subscribe(
+      data => {
+        this.imageSrv.uploadImage(this.imagem, data.uid);          
+      });
   }
 
+  loadImage(){
+    let img_saved = localStorage.getItem('perfil_imagem');
+
+    if (img_saved) {
+      this.ofAuth.authState.take(1).subscribe(
+        data => {
+          this.imagem = this.imageSrv.getImage(data.uid, img_saved);
+        });
+    }
+    
+  }
+   
   goEditPerfilPage() {
-    this.navCtrl.push(EditPerfilPage);
+    this.navCtrl.push(EditPerfilPage, { img: this.imagem });
   }
 
   goAboutPage() {

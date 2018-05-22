@@ -33,6 +33,7 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 import { HistoricoProvider } from '../providers/historico/historico';
 import { DatePipe} from '@angular/common';
 import { Camera, CameraOptions } from "@ionic-native/camera";
+import { ImageProvider } from '../providers/image/image';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { Camera, CameraOptions } from "@ionic-native/camera";
     CalculoProvider,
     HistoricoProvider,
     DatePipe,
-    Camera
+    Camera,
+    ImageProvider
   ]
 })
 export class AppModule {}
