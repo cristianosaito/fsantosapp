@@ -45,7 +45,7 @@ export class PerfilPage {
     private app: App,
     private imageSrv: ImageProvider
 ) {
-    this.loadImage();
+    
 
   }
 
@@ -122,6 +122,7 @@ export class PerfilPage {
   }
 
   ionViewDidLoad() {
+    this.loadImage();
     
     this.ofAuth.authState.take(1).subscribe(
       data =>{

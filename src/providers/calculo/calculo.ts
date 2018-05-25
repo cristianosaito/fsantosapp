@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class CalculoProvider {
 
   constructor(public http: Http) {
+
   }
   total_real:any;
   total_ipi:any;
@@ -47,7 +48,6 @@ export class CalculoProvider {
   volume:any;
   frete:any;
   seguro: number;
-  siscomex:number = 214.5;
 
   //variáveis formatadas para print na tela
   total_real_formatado: any;
@@ -62,6 +62,21 @@ export class CalculoProvider {
   fob_formatado: any;
   frete_formatado:any;
   seguro_formatado:any;
+  tx_total_formatado:any;
+
+  //taxas
+  tx_siscomex: number = 214.5;
+  tx_exp: number = 300;
+  tx_desc: number = 80;
+  tx_lib: number = 80;
+  tx_sda:number = 555;
+  tx_honorario_desp:number = 954;
+  tx_mar_merc:number = 0.25;
+  tx_mar_thc:number = 1000;
+  tx_total:number;
+
+  //valor do dolar
+  dolardia:any;
 
   calculaImpostos() {
     this.calculaFob();
@@ -74,10 +89,12 @@ export class CalculoProvider {
     this.calculaPIS();
     this.calculaCOFINS();
     this.calculaICMS();
+    this.calculaTaxas();
     this.calculaTotal();
   }
 
-  setImpostos(categoria: any, descricao: any, ipi: any, tec: any, pis: any, cofins: any, moeda: any, cambio:any){
+  setImpostos(categoria: any, descricao: any, ipi: any, tec: any, pis: any, cofins: any, moeda: any, cambio:any, dolardia:any){
+    this.dolardia = dolardia;
     this.categoria = categoria.toUpperCase();
     this.descricao = descricao.toUpperCase();
     this.ipi = ipi;
@@ -86,7 +103,6 @@ export class CalculoProvider {
     this.cofins = cofins;
     this.cambio = cambio;
     this.moeda = moeda.toUpperCase();
-
     this.calculaImpostos();
     this.cambio_formatado = this.formataReal(this.cambio);
     this.valor_uni_formatado = this.formataReal(this.valor_uni);
@@ -96,7 +112,7 @@ export class CalculoProvider {
     if (this.ipi == "NT") {
       this.ipi = 0;
     }else{
-    this.ipi = this.ipi.replace(',', '.');
+      this.ipi = this.ipi.replace(',', '.');
     }
     this.total_ipi = ((parseFloat(this.cif) + parseFloat(this.tec)) * parseFloat(this.ipi)).toFixed(2);
     this.total_ipi_formatado = this.formataReal(this.total_ipi);
@@ -153,16 +169,11 @@ export class CalculoProvider {
   //calcula o valor CIF já em R$
   calculaCif() {
     let base = (parseFloat(this.valor_uni) * parseFloat(this.quantidade) * parseFloat(this.cambio));
-    this.cif = (base + this.frete + this.seguro + this.siscomex).toFixed(2);
+    this.cif = (base + this.frete + this.seguro).toFixed(2);
     this.cif_formatado = this.formataReal(this.cif);
   }
 
-  calculaTotal() {
-    this.total_real = parseFloat(this.cif) + parseFloat(this.ipi) + parseFloat(this.tec) + parseFloat(this.ipi) + parseFloat(this.pis) + parseFloat(this.cofins);
-    this.total_real_formatado = this.formataReal(this.total_real);
-  }
-
-  calculaICMS(){
+   calculaICMS(){
     switch (this.destino) {
       case "SP":
         this.icms = 0.18;
@@ -306,11 +317,31 @@ export class CalculoProvider {
     this.total_icms_formatado = this.formataReal(this.total_icms);
   }
 
+  calculaTaxas(){
+    this.tx_total = this.tx_siscomex + this.tx_exp + this.tx_honorario_desp + (this.tx_desc * parseFloat(this.dolardia)) + (this.tx_lib * parseFloat(this.dolardia)) + this.tx_sda;
+    
+    if (this.modal == "MARÍTIMO") {
+      this.tx_total = this.tx_total + (this.tx_mar_merc * parseFloat(this.frete)) + this.tx_mar_thc ;
+    }
+    this.tx_total_formatado = this.formataReal(this.tx_total);
+  }
+
+  calculaTotal() {
+    this.total_real = this.tx_total + parseFloat(this.icms) + parseFloat(this.cif) + parseFloat(this.ipi) + parseFloat(this.tec) + parseFloat(this.ipi) + parseFloat(this.pis) + parseFloat(this.cofins);
+    this.total_real_formatado = this.formataReal(this.total_real);
+  }
+
   formataReal(num){
     num = (parseFloat(num)).toLocaleString('pt-BR', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });   
     return num;
+  }
+
+  
+
+  ionViewDidLoad() {
+    
   }
 }

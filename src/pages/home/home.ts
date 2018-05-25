@@ -68,23 +68,21 @@ export class HomePage {
         const response = (data as any);
         const obj_retorno = JSON.parse(response._body);
         
-       let categoria = obj_retorno.CATEGORIA;
-       let descricao = obj_retorno.DESCRICAO;
-       let ipi = obj_retorno.IPI;
-       let tec = obj_retorno.TEC;
-       let pis = obj_retorno.PIS;
-       let cofins = obj_retorno.COFINS;
-       let moeda = obj_retorno.moeda;
-       let cambio = obj_retorno.valor;
-
-       this.calculoProvider.setImpostos(categoria,descricao,ipi,tec,pis,cofins,moeda,cambio);
-
+        let categoria = obj_retorno.CATEGORIA;
+        let descricao = obj_retorno.DESCRICAO;
+        let ipi = obj_retorno.IPI;
+        let tec = obj_retorno.TEC;
+        let pis = obj_retorno.PIS;
+        let cofins = obj_retorno.COFINS;
+        let moeda = obj_retorno.moeda;
+        let cambio = obj_retorno.valor;
+        let dolardia = obj_retorno.dolardia;
+  
+        this.calculoProvider.setImpostos(categoria,descricao,ipi,tec,pis,cofins,moeda,cambio,dolardia);
         this.historico = new Historico();
-       
         this.historico.ncm = this.calculoProvider.ncm;
         this.historico.categoria = categoria;
         this.historico.descricao = descricao;
-
         this.historicoProvider.insert(this.historico);
 
       }, error => {
