@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { NcmProvider } from '../../providers/ncm/ncm';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the CotacaoPage page.
@@ -11,7 +10,6 @@ import { Observable } from 'rxjs/Observable';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-cotacao',
   templateUrl: 'cotacao.html',

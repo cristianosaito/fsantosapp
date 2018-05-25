@@ -1,10 +1,10 @@
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from "angularfire2/database";
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Profile } from "../../models/profile";
 import { TabsPage } from '../tabs/tabs';
-
+ 
 /**
  * Generated class for the ProfilePage page.
  *
@@ -12,7 +12,6 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',

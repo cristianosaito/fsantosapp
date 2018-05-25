@@ -23,13 +23,28 @@
           </ion-row>
          
         <ion-row align-items-center>
-            <ion-col>         
+            <ion-col col-7>         
               <ion-item text-center>
                 <ion-label floating>Valor Unitário</ion-label>
                 <ion-input text-center type="text" name="valor_uni" formControlName='valor_uni'></ion-input>
               </ion-item>
           </ion-col>
 
+          <ion-col col-5>
+            <ion-item text-center>
+              <ion-label floating>Moeda</ion-label>
+              <ion-select formControlName="moeda">
+                <ion-option value="0">Real - BR</ion-option>
+                <ion-option value="1">Dólar - USD</ion-option>
+                <ion-option value="21619">Euro - EUR</ion-option>
+                <ion-option value="21623">Libra - LIB</ion-option>
+                <ion-option value="21621">Yene - YEN</ion-option>
+              </ion-select>
+            </ion-item>
+            
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
           <ion-col>
             <ion-item text-center>
               <ion-label floating>Peso Unitário (Kg)</ion-label>
@@ -46,19 +61,6 @@
           </ion-col>
         </ion-row>
         <ion-row align-items-center>
-          <ion-col>
-            <ion-item text-center>
-              <ion-label floating>Moeda</ion-label>
-              <ion-select formControlName="moeda">
-                <ion-option value="0">Real - BR</ion-option>
-                <ion-option value="1">Dólar - USD</ion-option>
-                <ion-option value="21619">Euro - EUR</ion-option>
-                <ion-option value="21623">Libra - LIB</ion-option>
-                <ion-option value="21621">Yene - YEN</ion-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-
           <ion-col>
             <ion-item text-center>
               <ion-label floating>Modal</ion-label>
@@ -82,7 +84,8 @@
               </ion-select>
             </ion-item>
           </ion-col>
-
+        </ion-row>
+        <ion-row align-items-center>
           <ion-col>
             <ion-item text-center>
               <ion-label floating>Destino</ion-label>

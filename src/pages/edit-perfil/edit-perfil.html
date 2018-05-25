@@ -15,7 +15,7 @@
 
 <ion-content padding text-center>
   <img [src]="imagem" />
-
+<p>alterar foto</p>
   <ion-row>
     <ion-col>
       <button ion-button clear (click)="openCamera()">Tirar foto</button>
@@ -24,4 +24,23 @@
       <button ion-button clear (click)="openGallery()">Galeria</button>
     </ion-col>
   </ion-row>
+  <div class="login_form">
+    <ion-item>
+      <ion-label floating>Nome / Razão Social</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>CPF / CNPJ</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.cpf"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <button ion-button full block (click)="updateProfile()"> Salvar</button>
+  </div>
 </ion-content>

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Usuario } from '../../models/user';
-import { ProfilePage } from '../profile/profile';
+import { Profile } from "../../models/profile";
 import { LoginPage } from "../login/login";
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from "angularfire2/database";
+import { TabsPage } from '../tabs/tabs';
+import { PoliticaPage } from '../politica/politica';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -11,7 +15,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -19,9 +22,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class RegisterPage {
 
   user = {} as Usuario;
+  profile = {} as Profile;
+  termos:boolean = false;
 
   constructor(
     private ofAuth: AngularFireAuth,
+    private afDatabase: AngularFireDatabase,
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
@@ -31,10 +37,30 @@ export class RegisterPage {
       this.ofAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then(data =>{
         console.log(data);
-        this.navCtrl.setRoot(ProfilePage);
+        this.createProfile();
       })
       .catch(error=>{
         console.log(error);
       });
+  }
+
+  createProfile() {
+    this.ofAuth.authState.take(1).subscribe(
+      auth => {
+        this.profile.email = auth.email;
+        console.log(auth.email);
+        this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
+          .then(() => this.navCtrl.setRoot(TabsPage))
+      }
+    )
+  }
+
+  goLoginPage(){
+    this.navCtrl.push(LoginPage);
+  }
+
+  goTermoPage(){
+    this.navCtrl.push(PoliticaPage);
+
   }
 }

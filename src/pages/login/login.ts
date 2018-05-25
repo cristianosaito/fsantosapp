@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Usuario } from '../../models/user';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TabsPage } from '../tabs/tabs';
+import { RecuperaSenhaPage } from '../recupera-senha/recupera-senha';
 
 /**
  * Generated class for the LoginPage page.
@@ -12,7 +13,6 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -35,7 +35,6 @@ export class LoginPage {
   
       this.ofAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.password)
       .then(data => {
-        console.log(data.email);
         toast.setMessage('Usuário logado com sucesso');
         toast.present();
         this.navCtrl.setRoot(TabsPage);
@@ -47,10 +46,18 @@ export class LoginPage {
 
       });
   }
-     
-     
+         
   goRegisterPage() {
     this.navCtrl.push(RegisterPage);
+  }
+
+  goRecuperaSenhaPage() {
+    this.navCtrl.push(RecuperaSenhaPage);
+  }
+
+  goEsqueceuSenha(){
+    this.navCtrl.push(RecuperaSenhaPage);
+
   }
 
 }

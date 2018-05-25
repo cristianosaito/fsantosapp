@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { NcmProvider } from '../../providers/ncm/ncm';
 import { CalculoProvider } from '../../providers/calculo/calculo';
 /**
@@ -9,7 +9,6 @@ import { CalculoProvider } from '../../providers/calculo/calculo';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-result',
   templateUrl: 'result.html',

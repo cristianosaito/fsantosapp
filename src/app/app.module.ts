@@ -34,7 +34,7 @@ import { HistoricoProvider } from '../providers/historico/historico';
 import { DatePipe} from '@angular/common';
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { ImageProvider } from '../providers/image/image';
-
+import { RecuperaSenhaPage } from '../pages/recupera-senha/recupera-senha';
 @NgModule({
   declarations: [
     MyApp,
@@ -54,7 +54,8 @@ import { ImageProvider } from '../providers/image/image';
     PoliticaPage,
     HistoricoPage,
     ProfilePage,
-    EditPerfilPage
+    EditPerfilPage,
+    RecuperaSenhaPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +85,8 @@ import { ImageProvider } from '../providers/image/image';
     PoliticaPage,
     HistoricoPage,
     ProfilePage,
-    EditPerfilPage
+    EditPerfilPage,
+    RecuperaSenhaPage
   ],
   providers: [
     StatusBar,

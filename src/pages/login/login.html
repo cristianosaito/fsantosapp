@@ -14,7 +14,8 @@
 
 <ion-content padding text-center >
     <img src="assets/imgs/logo.png" />
-
+<h1>Bem Vindo</h1>
+<h4>Preencha os campos abaixo para entrar</h4>
 <ion-list no-line>
   <div class="login_form">
    <ion-item>
@@ -25,9 +26,12 @@
     <ion-label floating>Senha</ion-label>
     <ion-input type="password" [(ngModel)]="usuario.password" ></ion-input>
   </ion-item>
+  <ion-item text-right no-lines>
+    <p (click)="goEsqueceuSenha()">Esqueceu sua senha?</p>
+  </ion-item>
 </div>
   <button ion-button full block (click)="login(usuario)"> Entrar</button>
-  <button ion-button full block color="dark" clear (click)="goRegisterPage()"> Registrar</button>
+  <button ion-button full block color="dark" clear (click)="goRegisterPage()"> Não é cadastrado? Crie sua conta agora</button>
   </ion-list>
 
 </ion-content>

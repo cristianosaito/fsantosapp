@@ -1,17 +1,14 @@
-page-register {
-    img{
+page-recupera-senha {
+ img{
         max-width: 60%;
     }
-     .login_form{
-        
+  
+    .login_form{
+        margin-bottom: 15%;
         align-content: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
-    }
-
-    .termo{
-        font-size: 0.5em;
     }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { App, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { IntroPage } from '../intro/intro';
 import { AboutPage } from "../about/about";
@@ -19,7 +19,6 @@ import { ImageProvider } from '../../providers/image/image';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-perfil',
   templateUrl: 'perfil.html',
@@ -32,7 +31,9 @@ export class PerfilPage {
   profileData: AngularFireObject <Profile>;
   nome: string;
   cpf: string;
-  imagem: string ="assets/imgs/user.png";
+  email:string;
+  imagem: any;
+  user_id:any;
 
   constructor(
     private afDatabase: AngularFireDatabase,
@@ -44,31 +45,24 @@ export class PerfilPage {
     private app: App,
     private imageSrv: ImageProvider
 ) {
-    if (this.navParams.get('img')){
-      this.imagem = this.navParams.get('img');
-      this.saveImage();
-    }else{
-      this.loadImage();
-    }
-  }
+    this.loadImage();
 
-  saveImage(){
-    this.ofAuth.authState.take(1).subscribe(
-      data => {
-        this.imageSrv.uploadImage(this.imagem, data.uid);          
-      });
   }
 
   loadImage(){
-    let img_saved = localStorage.getItem('perfil_imagem');
-
-    if (img_saved) {
-      this.ofAuth.authState.take(1).subscribe(
-        data => {
-          this.imagem = this.imageSrv.getImage(data.uid, img_saved);
-        });
-    }
-    
+    this.ofAuth.authState.take(1).subscribe(
+      data => {
+        let promiseList = [];
+        
+          let promise = this.imageSrv.getImage(data.uid);
+          promiseList.push(promise);
+        
+        Promise.all(promiseList)
+          .then(url => {
+            this.imagem = url;
+          
+          });
+      });
   }
    
   goEditPerfilPage() {
@@ -135,6 +129,7 @@ export class PerfilPage {
         this.profileData.valueChanges().subscribe(profile=>{
           this.nome = profile.nome;
           this.cpf = profile.cpf;
+          this.email = profile.email;
         });
       }
     )
