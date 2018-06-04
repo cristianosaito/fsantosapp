@@ -22,7 +22,7 @@
 </ion-item>
 <ion-item>
   <ion-label floating>CPF / CNPJ</ion-label>
-  <ion-input type="text" [(ngModel)]="profile.cpf"></ion-input>
+  <ion-input #cpfInput type="text" [(ngModel)]="profile.cpf" (focusout)="mascara_cpf_cnpj()"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label floating>Email</ion-label>

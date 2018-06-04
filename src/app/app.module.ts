@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
+//import { AngularFireAuth } from 'angularfire2/auth';
 import { AboutPage } from '../pages/about/about';
 import { CotacaoPage } from '../pages/cotacao/cotacao';
 import { ContactPage } from '../pages/contact/contact';
@@ -32,9 +32,10 @@ import { firebaseConfig} from '../config/firebaseConfig';
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { HistoricoProvider } from '../providers/historico/historico';
 import { DatePipe} from '@angular/common';
-import { Camera, CameraOptions } from "@ionic-native/camera";
+import { Camera } from "@ionic-native/camera";
 import { ImageProvider } from '../providers/image/image';
 import { RecuperaSenhaPage } from '../pages/recupera-senha/recupera-senha';
+import { ValidaCpfProvider } from '../providers/valida-cpf/valida-cpf';
 @NgModule({
   declarations: [
     MyApp,
@@ -97,7 +98,8 @@ import { RecuperaSenhaPage } from '../pages/recupera-senha/recupera-senha';
     HistoricoProvider,
     DatePipe,
     Camera,
-    ImageProvider
+    ImageProvider,
+    ValidaCpfProvider
   ]
 })
 export class AppModule {}

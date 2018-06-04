@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { FirstPage } from '../first/first'; 
-import { LoginPage } from '../login/login';
 import { PerfilPage } from '../perfil/perfil';
 import { CotacaoPage } from "../cotacao/cotacao";
 import { SearchPage } from '../search/search';
@@ -22,11 +21,9 @@ export class TabsPage {
   tab5Root = PerfilPage;
 
   constructor(
-    private toastCtrl: ToastController,
     private ofAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController
     ) {
 
   }

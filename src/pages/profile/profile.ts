@@ -40,6 +40,10 @@ export class ProfilePage {
     )
   }
 
+  
+
+  
+
   ionViewDidLoad() {
     
   }

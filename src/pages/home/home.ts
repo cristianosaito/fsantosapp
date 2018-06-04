@@ -4,7 +4,7 @@ import { NcmProvider } from '../../providers/ncm/ncm';
 import { CalculoProvider } from '../../providers/calculo/calculo';
 import { ResultPage } from '../result/result';
 import { SearchPage} from '../search/search';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { HistoricoProvider } from "../../providers/historico/historico";
 import { Historico } from "../../models/historico";
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { PerfilPage } from "../perfil/perfil";
 import { Usuario } from '../../models/user';
@@ -7,6 +7,7 @@ import { Profile } from "../../models/profile";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from "angularfire2/database";
 import { ImageProvider } from '../../providers/image/image';
+import { ValidaCpfProvider } from "../../providers/valida-cpf/valida-cpf";
 
 /**
  * Generated class for the EditPerfilPage page.
@@ -18,6 +19,9 @@ import { ImageProvider } from '../../providers/image/image';
 @Component({
   selector: 'page-edit-perfil',
   templateUrl: 'edit-perfil.html',
+  providers: [
+    ValidaCpfProvider
+  ]
 })
 export class EditPerfilPage {
 
@@ -26,13 +30,17 @@ export class EditPerfilPage {
   user = {} as Usuario;
   profile = {} as Profile;
 
+  @ViewChild('cpfInput') cpfInput;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private camera: Camera,
     private ofAuth: AngularFireAuth,
     private afDatabase: AngularFireDatabase,
-    private imageSrv: ImageProvider
+    private imageSrv: ImageProvider,
+    public validaCpf: ValidaCpfProvider,
+    private toastCtrl: ToastController
 ) {
     if (this.navParams.get('img')) {
       this.imagem = this.navParams.get('img');
@@ -112,6 +120,56 @@ export class EditPerfilPage {
     user.updatePassword(newPassword);
     user.updateEmail(newEmail);
   }
+
+  mascara_cpf_cnpj() {
+    var dig = this.profile.cpf;
+
+    if (dig.length == 11) {
+      dig.split("");
+
+      let cpf_formatado = dig[0] + dig[1] + dig[2] + '.' + dig[3] + dig[4] + dig[5] + '.' + dig[6] + dig[7] + dig[8] + '-' + dig[9] + dig[10];
+
+      let validou = this.validaCpf.validaCPF(this.profile.cpf);
+
+      this.profile.cpf = cpf_formatado;
+
+      if (!validou) {
+        this.presentToast('CPF inválido');
+        this.profile.cpf = '';
+        this.cpfInput.setFocus();
+      }
+
+    } else if (dig.length == 14) {
+
+      dig.split("");
+
+      let cnpj_formatado = dig[0] + dig[1] + '.' + dig[2] + dig[3] + dig[4] + '.' + dig[5] + dig[6] + dig[7] + '/' + dig[8] + dig[9] + dig[10] + dig[11] + '-' + dig[12] + dig[13];
+
+      this.profile.cpf = cnpj_formatado;
+
+      let validou = this.validaCpf.validaCNPJ(this.profile.cpf);
+
+      if (!validou) {
+        this.presentToast('CNPJ inválido');
+        this.profile.cpf = '';
+        this.cpfInput.setFocus();
+      }
+
+    } else {
+      this.presentToast('Favor verificar o CPF/CNPJ');
+    }
+  }
+
+  presentToast(msg: string) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
 
   goPerfilPage() {
     this.navCtrl.push(PerfilPage);

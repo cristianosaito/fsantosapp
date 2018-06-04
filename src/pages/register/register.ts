@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ToastController} from 'ionic-angular';
 import { Usuario } from '../../models/user';
 import { Profile } from "../../models/profile";
 import { LoginPage } from "../login/login";
@@ -7,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from "angularfire2/database";
 import { TabsPage } from '../tabs/tabs';
 import { PoliticaPage } from '../politica/politica';
+import { ValidaCpfProvider } from "../../providers/valida-cpf/valida-cpf";
 
 /**
  * Generated class for the RegisterPage page.
@@ -18,6 +19,9 @@ import { PoliticaPage } from '../politica/politica';
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
+  providers: [
+    ValidaCpfProvider
+  ]
 })
 export class RegisterPage {
 
@@ -25,11 +29,15 @@ export class RegisterPage {
   profile = {} as Profile;
   termos:boolean = false;
 
+  @ViewChild('cpfInput') cpfInput;
+
   constructor(
     private ofAuth: AngularFireAuth,
     private afDatabase: AngularFireDatabase,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public validaCpf: ValidaCpfProvider,
+    private toastCtrl: ToastController
   ) {
   }
 
@@ -53,6 +61,55 @@ export class RegisterPage {
           .then(() => this.navCtrl.setRoot(TabsPage))
       }
     )
+  }
+
+  mascara_cpf_cnpj(){
+    var dig = this.profile.cpf;
+
+    if (dig.length == 11) {
+      dig.split("");
+
+      let cpf_formatado = dig[0] + dig[1] + dig[2] + '.' + dig[3] + dig[4] + dig[5] + '.' + dig[6] + dig[7] + dig[8] + '-' + dig[9] + dig[10];
+
+      let validou = this.validaCpf.validaCPF(this.profile.cpf);
+
+      this.profile.cpf = cpf_formatado;
+
+      if(!validou){
+        this.presentToast('CPF inválido');
+        this.profile.cpf = '';     
+        this.cpfInput.setFocus();
+      }
+
+    } else if (dig.length == 14) {
+
+      dig.split("");
+
+      let cnpj_formatado = dig[0] + dig[1] + '.' + dig[2] + dig[3] + dig[4] + '.' + dig[5] + dig[6] + dig[7] + '/' + dig[8] + dig[9] + dig[10] + dig[11] + '-' + dig[12] + dig[13];
+
+      this.profile.cpf = cnpj_formatado;
+
+      let validou = this.validaCpf.validaCNPJ(this.profile.cpf);
+
+      if (!validou) {
+        this.presentToast('CNPJ inválido');
+        this.profile.cpf = '';
+        this.cpfInput.setFocus();
+      }
+
+    }else{
+      this.presentToast('Favor verificar o CPF/CNPJ');
+    }
+  }
+
+  presentToast(msg:string) {
+    let toast = this.toastCtrl.create({
+      message:msg ,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
   }
 
   goLoginPage(){

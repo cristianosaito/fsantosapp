@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-contact',
@@ -39,7 +38,7 @@ export class ContactPage {
     this.http.post("http://agenciafeeshop.com.br/fsantosapp/envia_email_ajax.php", msg, options).subscribe(
       data => {
         const response = (data as any);
-        const obj_retorno = JSON.parse(response._body);
+        //const obj_retorno = JSON.parse(response._body);
         this.showToast('mensagem enviada!');
       },
       (error: any) => {
