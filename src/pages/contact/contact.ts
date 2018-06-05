@@ -37,7 +37,7 @@ export class ContactPage {
 
     this.http.post("http://agenciafeeshop.com.br/fsantosapp/envia_email_ajax.php", msg, options).subscribe(
       data => {
-        const response = (data as any);
+        //const response = (data as any);
         //const obj_retorno = JSON.parse(response._body);
         this.showToast('mensagem enviada!');
       },

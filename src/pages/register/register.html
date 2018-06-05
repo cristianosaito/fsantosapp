@@ -18,19 +18,19 @@
 <div class="login_form">
 <ion-item>
   <ion-label floating>Nome / Razão Social</ion-label>
-  <ion-input type="text" [(ngModel)]="profile.nome"></ion-input>
+  <ion-input type="text" [(ngModel)]="profile.nome" maxlength="50" (focusout)="valida_nome()"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label floating>CPF / CNPJ</ion-label>
-  <ion-input #cpfInput type="text" [(ngModel)]="profile.cpf" (focusout)="mascara_cpf_cnpj()"></ion-input>
+  <ion-input #cpfInput type="text" [(ngModel)]="profile.cpf" (focusout)="mascara_cpf_cnpj()" (keyup)="onlyNumber($event)" maxlength="14"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label floating>Email</ion-label>
-  <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+  <ion-input #emailInput type="email" [(ngModel)]="user.email" maxlength="50" (focusout)="valida_email()"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label floating>Senha</ion-label>
-  <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+  <ion-input type="password" [(ngModel)]="user.password" maxlength="20" (focusout)="valida_senha()"></ion-input>
 </ion-item>
 </div>
 <ion-item text-left no-lines>
@@ -41,7 +41,7 @@
   <span class="termo" (click)="goTermoPage()">clique aqui para ler o termo de uso e privacidade</span>
 </ion-item>
 
-<button [disabled]='!termos' ion-button full block (click)="register(user)"> Registrar</button>
+<button [disabled]='!termos || !cpf_ok || !email_ok || !nome_ok || !senha_ok' ion-button full block (click)="register(user)"> Registrar</button>
 <button ion-button full block color="dark" clear (click)="goLoginPage()"> Já é cadastrado? Entre</button>
 
 </ion-content>

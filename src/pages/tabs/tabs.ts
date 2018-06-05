@@ -5,7 +5,7 @@ import { PerfilPage } from '../perfil/perfil';
 import { CotacaoPage } from "../cotacao/cotacao";
 import { SearchPage } from '../search/search';
 import { IntroPage } from '../intro/intro';
-import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 

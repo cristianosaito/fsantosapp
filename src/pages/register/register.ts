@@ -28,8 +28,13 @@ export class RegisterPage {
   user = {} as Usuario;
   profile = {} as Profile;
   termos:boolean = false;
+  cpf_ok:boolean = false;
+  email_ok:boolean = false;
+  senha_ok: boolean = false;
+  nome_ok: boolean = false;
 
   @ViewChild('cpfInput') cpfInput;
+  @ViewChild('emailInput') emailInput;
 
   constructor(
     private ofAuth: AngularFireAuth,
@@ -66,39 +71,36 @@ export class RegisterPage {
   mascara_cpf_cnpj(){
     var dig = this.profile.cpf;
 
-    if (dig.length == 11) {
-      dig.split("");
+    if(dig){
+      if (dig.length == 11) {
+        dig.split("");
+        let cpf_formatado = dig[0] + dig[1] + dig[2] + '.' + dig[3] + dig[4] + dig[5] + '.' + dig[6] + dig[7] + dig[8] + '-' + dig[9] + dig[10];
+        let validou = this.validaCpf.validaCPF(this.profile.cpf);
+        this.profile.cpf = cpf_formatado;
 
-      let cpf_formatado = dig[0] + dig[1] + dig[2] + '.' + dig[3] + dig[4] + dig[5] + '.' + dig[6] + dig[7] + dig[8] + '-' + dig[9] + dig[10];
+        if (!validou) {
+          this.presentToast('CPF inválido');
+          this.profile.cpf = '';
+          this.cpfInput.setFocus();
+        } else if (validou) {
+          this.cpf_ok = true;
+        }
+      } else if (dig.length == 14) {
+        dig.split("");
+        let cnpj_formatado = dig[0] + dig[1] + '.' + dig[2] + dig[3] + dig[4] + '.' + dig[5] + dig[6] + dig[7] + '/' + dig[8] + dig[9] + dig[10] + dig[11] + '-' + dig[12] + dig[13];
+        this.profile.cpf = cnpj_formatado;
+        let validou = this.validaCpf.validaCNPJ(this.profile.cpf);
 
-      let validou = this.validaCpf.validaCPF(this.profile.cpf);
-
-      this.profile.cpf = cpf_formatado;
-
-      if(!validou){
-        this.presentToast('CPF inválido');
-        this.profile.cpf = '';     
-        this.cpfInput.setFocus();
+        if (!validou) {
+          this.presentToast('CNPJ inválido');
+          this.profile.cpf = '';
+          this.cpfInput.setFocus();
+        }else if(validou){
+          this.cpf_ok = true;
+        }
+      } else {
+        this.presentToast('Favor verificar o CPF/CNPJ');
       }
-
-    } else if (dig.length == 14) {
-
-      dig.split("");
-
-      let cnpj_formatado = dig[0] + dig[1] + '.' + dig[2] + dig[3] + dig[4] + '.' + dig[5] + dig[6] + dig[7] + '/' + dig[8] + dig[9] + dig[10] + dig[11] + '-' + dig[12] + dig[13];
-
-      this.profile.cpf = cnpj_formatado;
-
-      let validou = this.validaCpf.validaCNPJ(this.profile.cpf);
-
-      if (!validou) {
-        this.presentToast('CNPJ inválido');
-        this.profile.cpf = '';
-        this.cpfInput.setFocus();
-      }
-
-    }else{
-      this.presentToast('Favor verificar o CPF/CNPJ');
     }
   }
 
@@ -108,8 +110,48 @@ export class RegisterPage {
       duration: 3000,
       position: 'top'
     });
-
     toast.present();
+  }
+
+  onlyNumber(event: any){
+    const pattern = /[^0-9]/g; 
+    var str = this.profile.cpf; 
+    var result = str.replace(pattern, '');
+    this.cpfInput.value = result;
+  }
+
+  valida_email(){
+    var str = this.user.email;
+    const pattern = '@';
+    const pattern2 = '.co';
+   
+    if(str){
+      var validou = str.match(pattern);
+      var validou2 = str.match(pattern2);
+      if (!validou || !validou2) {
+        this.presentToast('e-mail inválido');
+      } else if (validou && validou2){
+        this.email_ok = true;
+      }
+    }
+  }    
+
+  valida_senha(){
+    let senha = this.user.password;
+    if (senha) {
+      if (senha.length > 5) {
+        this.senha_ok = true;
+      }
+    }
+  }
+
+  valida_nome() {
+    let nome = this.profile.nome;
+    if (nome) {
+      if (nome.length > 5) {
+        this.nome_ok = true;
+      }
+    }    
   }
 
   goLoginPage(){
