@@ -123,41 +123,52 @@ export class EditPerfilPage {
 
   mascara_cpf_cnpj() {
     var dig = this.profile.cpf;
-
-    if (dig.length == 11) {
-      dig.split("");
-
-      let cpf_formatado = dig[0] + dig[1] + dig[2] + '.' + dig[3] + dig[4] + dig[5] + '.' + dig[6] + dig[7] + dig[8] + '-' + dig[9] + dig[10];
-
-      let validou = this.validaCpf.validaCPF(this.profile.cpf);
-
-      this.profile.cpf = cpf_formatado;
-
-      if (!validou) {
-        this.presentToast('CPF inválido');
-        this.profile.cpf = '';
-        this.cpfInput.setFocus();
+    if (dig) {
+      if (dig.length == 11) {
+        dig.split("");
+        let cpf_formatado = dig[0] + dig[1] + dig[2] + '.' + dig[3] + dig[4] + dig[5] + '.' + dig[6] + dig[7] + dig[8] + '-' + dig[9] + dig[10];
+        let validou = this.validaCpf.validaCPF(this.profile.cpf);
+        this.profile.cpf = cpf_formatado;
+        if (!validou) {
+          this.presentToast('CPF inválido');
+          this.profile.cpf = '';
+          this.cpfInput.setFocus();
+        }
+      } else if (dig.length == 14) {
+        dig.split("");
+        let cnpj_formatado = dig[0] + dig[1] + '.' + dig[2] + dig[3] + dig[4] + '.' + dig[5] + dig[6] + dig[7] + '/' + dig[8] + dig[9] + dig[10] + dig[11] + '-' + dig[12] + dig[13];
+        this.profile.cpf = cnpj_formatado;
+        let validou = this.validaCpf.validaCNPJ(this.profile.cpf);
+        if (!validou) {
+          this.presentToast('CNPJ inválido');
+          this.profile.cpf = '';
+          this.cpfInput.setFocus();
+        }
+      } else {
+        this.presentToast('Favor verificar o CPF/CNPJ');
       }
-
-    } else if (dig.length == 14) {
-
-      dig.split("");
-
-      let cnpj_formatado = dig[0] + dig[1] + '.' + dig[2] + dig[3] + dig[4] + '.' + dig[5] + dig[6] + dig[7] + '/' + dig[8] + dig[9] + dig[10] + dig[11] + '-' + dig[12] + dig[13];
-
-      this.profile.cpf = cnpj_formatado;
-
-      let validou = this.validaCpf.validaCNPJ(this.profile.cpf);
-
-      if (!validou) {
-        this.presentToast('CNPJ inválido');
-        this.profile.cpf = '';
-        this.cpfInput.setFocus();
-      }
-
-    } else {
-      this.presentToast('Favor verificar o CPF/CNPJ');
     }
+  }
+
+  valida_email() {
+    var str = this.profile.email;
+    const pattern = '@';
+    const pattern2 = '.co';
+
+    if (str) {
+      var validou = str.match(pattern);
+      var validou2 = str.match(pattern2);
+      if (!validou || !validou2) {
+        this.presentToast('e-mail inválido');
+      } 
+    }
+  }  
+  
+  onlyNumber(event: any) {
+    const pattern = /[^0-9]/g;
+    var str = this.profile.cpf;
+    var result = str.replace(pattern, '');
+    this.cpfInput.value = result;
   }
 
   presentToast(msg: string) {
@@ -166,19 +177,13 @@ export class EditPerfilPage {
       duration: 3000,
       position: 'top'
     });
-
     toast.present();
   }
-
 
   goPerfilPage() {
     this.navCtrl.push(PerfilPage);
   }
 
-
-
-  ionViewDidLoad() {
-    
+  ionViewDidLoad() { 
   }
-
 }

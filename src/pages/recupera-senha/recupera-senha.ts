@@ -33,6 +33,8 @@ export class RecuperaSenhaPage {
       this.exibeToast("Senha enviada para o e-mail cadastrado");
     }).catch(function (error) {
       // An error happened.
+      console.log(error);
+      this.exibeToast(error);
     });
   }
 

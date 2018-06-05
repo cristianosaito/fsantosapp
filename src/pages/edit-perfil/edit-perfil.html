@@ -27,19 +27,19 @@
   <div class="login_form">
     <ion-item>
       <ion-label floating>Nome / Razão Social</ion-label>
-      <ion-input type="text" [(ngModel)]="profile.nome"></ion-input>
+      <ion-input type="text" [(ngModel)]="profile.nome" maxlength="50"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>CPF / CNPJ</ion-label>
-      <ion-input  #cpfInput type="text" [(ngModel)]="profile.cpf" (focusout)="mascara_cpf_cnpj()"></ion-input>
+      <ion-input  #cpfInput type="text" [(ngModel)]="profile.cpf" (focusout)="mascara_cpf_cnpj()" (keyup)="onlyNumber($event)" maxlength="14"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="text" [(ngModel)]="profile.email"></ion-input>
+      <ion-input type="text" [(ngModel)]="profile.email" (focusout)="valida_email()"  maxlength="50"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+      <ion-input type="password" [(ngModel)]="user.password" maxlength="20"></ion-input>
     </ion-item>
     <button ion-button full block (click)="updateProfile()"> Salvar</button>
   </div>
