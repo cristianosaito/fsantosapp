@@ -22,20 +22,19 @@ export class RecuperaSenhaPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private toastCtrl: ToastController,
-    private ofAuth: AngularFireAuth,
-    
+    private ofAuth: AngularFireAuth    
 ) {
   }
 
   recuperaSenha(){
     this.ofAuth.auth.sendPasswordResetEmail(this.email).then(function () {
       // Email sent.
-      this.exibeToast("Senha enviada para o e-mail cadastrado");
+      
     }).catch(function (error) {
       // An error happened.
       console.log(error);
-      this.exibeToast(error);
     });
+    this.exibeToast("Senha enviada para o e-mail cadastrado");
   }
 
   exibeToast(msg:string){

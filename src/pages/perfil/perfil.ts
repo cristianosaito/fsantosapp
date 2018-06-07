@@ -45,23 +45,24 @@ export class PerfilPage {
     private app: App,
     private imageSrv: ImageProvider
 ) {
-    
-
+   
   }
 
   loadImage(){
     this.ofAuth.authState.take(1).subscribe(
       data => {
         let promiseList = [];
-        
-          let promise = this.imageSrv.getImage(data.uid);
-          promiseList.push(promise);
-        
+        let promise = this.imageSrv.getImage(data.uid);
+        promiseList.push(promise);
         Promise.all(promiseList)
-          .then(url => {
-            this.imagem = url;
-          
+           .then(url => {
+             this.imagem = url;
+          }).catch(function (error) {
+            // An error happened.
+            console.log(error);
           });
+      }, error => {
+        console.log(error);
       });
   }
    
