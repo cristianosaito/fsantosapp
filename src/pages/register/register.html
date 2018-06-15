@@ -29,8 +29,16 @@
   <ion-input #emailInput type="email" [(ngModel)]="user.email" maxlength="50" (focusout)="valida_email()"></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label floating>Senha</ion-label>
-  <ion-input type="password" [(ngModel)]="user.password" maxlength="20" (focusout)="valida_senha()"></ion-input>
+  <ion-label stacked>Telefone</ion-label>
+  <ion-input placeholder="informar com ddd" #foneInput type="text" [(ngModel)]="profile.telefone" maxlength="11"  (keyup)="onlyNumberFone($event)" (focusout)="mascara_phone()"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label stacked>Segmento</ion-label>
+  <ion-input placeholder="ramo de atividade" type="text" [(ngModel)]="profile.segmento" maxlength="50"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label stacked>Senha</ion-label>
+  <ion-input placeholder="maior que 6 dígitos" type="password" [(ngModel)]="user.password" maxlength="20" (focusout)="valida_senha()"></ion-input>
 </ion-item>
 </div>
 <ion-item text-left no-lines>

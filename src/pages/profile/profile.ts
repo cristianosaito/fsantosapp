@@ -39,11 +39,7 @@ export class ProfilePage {
       }
     )
   }
-
   
-
-  
-
   ionViewDidLoad() {
     
   }

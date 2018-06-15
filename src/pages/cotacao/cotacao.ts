@@ -144,8 +144,6 @@ dataFormatada(){
 
 converteValor(){
 
-  console.log(this.valor1, this.moeda1, this.moeda2);
-  
   var valor_real: number;
   var result: number;
 
@@ -202,8 +200,6 @@ converteValor(){
 
 }
   ionViewDidLoad() {
-  
    
   }
-
 }

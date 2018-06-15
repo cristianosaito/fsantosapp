@@ -19,7 +19,12 @@
 <ion-item *ngFor="let item of historicolist">
   <ion-row text-justify>
     <ion-col text-wrap>
-      <b>Data: </b>{{item.historico.date}}
+      <b>ID: </b>{{item.key}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>DATA: </b>{{item.historico.date}}
     </ion-col>
   </ion-row>
    <ion-row text-justify>
@@ -37,7 +42,50 @@
       <b>DESCRIÇÃO: </b>{{item.historico.descricao}}
     </ion-col>
   </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>VALOR: </b>{{item.historico.valor}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>QUANTIDADE: </b>{{item.historico.quantidade}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>MODAL: </b>{{item.historico.modal}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>PESO: </b>{{item.historico.peso}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>MOEDA: </b>{{item.historico.moeda}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>ORIGEM: </b>{{item.historico.origem}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-justify>
+    <ion-col text-wrap>
+      <b>DESTINO: </b>{{item.historico.destino}}
+    </ion-col>
+  </ion-row>
+  <ion-row text-center>
+    <ion-col>
+      <button ion-button full small color="default">refazer a mesma consulta?</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full small color="secondary">utilizar dados para outra consulta?</button>
+    </ion-col>
+  </ion-row>
 </ion-item>
 </ion-list>
-<button ion-button color="danger" (click)='apagaHistorico()'>apagar histórico</button>
+<!-- <button ion-button color="danger" (click)='apagaHistorico()'>apagar histórico</button> -->
 </ion-content>

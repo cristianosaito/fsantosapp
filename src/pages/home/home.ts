@@ -83,6 +83,13 @@ export class HomePage {
         this.historico.ncm = this.calculoProvider.ncm;
         this.historico.categoria = categoria;
         this.historico.descricao = descricao;
+        this.historico.valor = inputs.valor_uni;
+        this.historico.moeda = moeda;
+        this.historico.peso = inputs.peso_uni;
+        this.historico.quantidade = inputs.quantidade;
+        this.historico.modal = inputs.modal;
+        this.historico.origem = inputs.origem;
+        this.historico.destino = inputs.destino;
         this.historicoProvider.insert(this.historico);
 
       }, error => {

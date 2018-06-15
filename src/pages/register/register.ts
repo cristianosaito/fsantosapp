@@ -5,7 +5,7 @@ import { Profile } from "../../models/profile";
 import { LoginPage } from "../login/login";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from "angularfire2/database";
-import { TabsPage } from '../tabs/tabs';
+//import { TabsPage } from '../tabs/tabs';
 import { PoliticaPage } from '../politica/politica';
 import { ValidaCpfProvider } from "../../providers/valida-cpf/valida-cpf";
 
@@ -35,6 +35,7 @@ export class RegisterPage {
 
   @ViewChild('cpfInput') cpfInput;
   @ViewChild('emailInput') emailInput;
+  @ViewChild('foneInput') foneInput;
 
   constructor(
     private ofAuth: AngularFireAuth,
@@ -50,10 +51,16 @@ export class RegisterPage {
       this.ofAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then(data =>{
         console.log(data);
+        this.enviaEmailVerificação();
         this.createProfile();
       })
       .catch(error=>{
         console.log(error);
+        if (error = "auth/email-already-in-use") {
+          let toast = this.toastCtrl.create({ duration: 3000, position: 'top' });
+          toast.setMessage('E-mail já cadastrado!');
+          toast.present();
+        }
       });
   }
 
@@ -63,9 +70,21 @@ export class RegisterPage {
         this.profile.email = auth.email;
         console.log(auth.email);
         this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
-          .then(() => this.navCtrl.setRoot(TabsPage))
+          .then(() => this.navCtrl.setRoot(LoginPage))
       }
     )
+  }
+
+  enviaEmailVerificação() {
+    let toast = this.toastCtrl.create({ duration: 3000, position: 'top' });
+    var user = this.ofAuth.auth.currentUser;
+    user.sendEmailVerification().then(function () {
+      toast.setMessage('E-mail de verificação enviado!');
+      toast.present();
+    }).catch(function (error) {
+      // An error happened.
+      console.log(error);
+    });
   }
 
   mascara_cpf_cnpj(){
@@ -104,6 +123,27 @@ export class RegisterPage {
     }
   }
 
+  mascara_phone() {
+    var dig = this.profile.telefone;
+
+    if (dig) {
+      if (dig.length == 11){
+        dig.split("");
+        let fone_formatado = '(' + dig[0] + dig[1] + ')' + dig[2] + dig[3] + dig[4] + dig[5] + dig[6] + '-' + dig[7] + dig[8] + dig[9] + dig[10];
+        this.profile.telefone = fone_formatado;
+       
+      } else if (dig.length == 10) {
+        dig.split("");
+        let fone_formatado = '(' + dig[0] + dig[1] + ')' + dig[2] + dig[3] + dig[4] + dig[5] + '-' + dig[6] + dig[7] + dig[8] + dig[9];
+        this.profile.telefone = fone_formatado;
+       
+      } else if (dig.length != 14 && dig.length != 13){
+        this.presentToast('Informar o telefone com o DDD');
+      }
+    }
+  }
+
+
   presentToast(msg:string) {
     let toast = this.toastCtrl.create({
       message:msg ,
@@ -114,10 +154,21 @@ export class RegisterPage {
   }
 
   onlyNumber(event: any){
-    const pattern = /[^0-9]/g; 
-    var str = this.profile.cpf; 
-    var result = str.replace(pattern, '');
-    this.cpfInput.value = result;
+    if (this.cpfInput.value) {
+      const pattern = /[^0-9]/g;
+      var str = this.profile.cpf;
+      var result = str.replace(pattern, '');
+      this.cpfInput.value = result;
+    }
+  }
+
+  onlyNumberFone(event: any) {
+    if (this.foneInput.value) {
+      const pattern = /[^0-9]/g;
+      var str = this.profile.telefone;
+      var result = str.replace(pattern, '');
+      this.foneInput.value = result;
+    }
   }
 
   valida_email(){
@@ -136,7 +187,7 @@ export class RegisterPage {
     }
   }    
 
-  valida_senha(){
+ valida_senha(){
     let senha = this.user.password;
     if (senha) {
       if (senha.length > 5) {
@@ -160,6 +211,5 @@ export class RegisterPage {
 
   goTermoPage(){
     this.navCtrl.push(PoliticaPage);
-
   }
 }

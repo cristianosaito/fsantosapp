@@ -3,6 +3,13 @@ export class Historico {
     ncm:string;
     categoria: string;
     descricao: string;
+    valor:string;
+    moeda:string;
+    peso:string;
+    quantidade:string;
+    modal:string;
+    origem:string;
+    destino:string;
 }
 
 export class HistoricoList {
