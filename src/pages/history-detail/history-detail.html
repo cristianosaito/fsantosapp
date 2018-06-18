@@ -1,0 +1,85 @@
+<!--
+  Generated template for the HistoryDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Histórico Detalhado</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding text-center>
+  <div *ngIf="historico">
+<ion-list>
+  <ion-item>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>DATA: </b>{{historico.date}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>NCM: </b>{{historico.ncm}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>CATEGORIA: </b>{{historico.categoria}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>DESCRIÇÃO: </b>{{historico.descricao}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>VALOR: </b>{{historico.valor}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>QUANTIDADE: </b>{{historico.quantidade}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>MODAL: </b>{{historico.modal}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>PESO: </b>{{historico.peso}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>MOEDA: </b>{{historico.moeda}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>ORIGEM: </b>{{historico.origem}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-justify>
+      <ion-col text-wrap>
+        <b>DESTINO: </b>{{historico.destino}}
+      </ion-col>
+    </ion-row>
+    <ion-row text-center>
+      <ion-col>
+        <button ion-button full small color="default">refazer a mesma consulta?</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full small color="secondary">utilizar dados para outra consulta?</button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-list>
+<!-- <button ion-button color="danger" (click)='apagaHistorico()'>apagar histórico</button> -->
+  </div>
+</ion-content>

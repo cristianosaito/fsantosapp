@@ -59,4 +59,9 @@ export class HistoricoProvider {
       });
   }
 
+  public async get(key) {
+
+    return await this.storage.get(key);
+  }
+
 }

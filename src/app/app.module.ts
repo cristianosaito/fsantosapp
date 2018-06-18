@@ -36,6 +36,8 @@ import { Camera } from "@ionic-native/camera";
 import { ImageProvider } from '../providers/image/image';
 import { RecuperaSenhaPage } from '../pages/recupera-senha/recupera-senha';
 import { ValidaCpfProvider } from '../providers/valida-cpf/valida-cpf';
+import { HistoryDetailPage } from '../pages/history-detail/history-detail';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -56,7 +58,8 @@ import { ValidaCpfProvider } from '../providers/valida-cpf/valida-cpf';
     HistoricoPage,
     ProfilePage,
     EditPerfilPage,
-    RecuperaSenhaPage
+    RecuperaSenhaPage,
+    HistoryDetailPage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import { ValidaCpfProvider } from '../providers/valida-cpf/valida-cpf';
     HistoricoPage,
     ProfilePage,
     EditPerfilPage,
-    RecuperaSenhaPage
+    RecuperaSenhaPage,
+    HistoryDetailPage
   ],
   providers: [
     StatusBar,

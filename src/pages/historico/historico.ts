@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HistoricoProvider } from "../../providers/historico/historico";
 import { Historico, HistoricoList } from "../../models/historico";
+import { HistoryDetailPage } from "../history-detail/history-detail";
 
 /**
  * Generated class for the HistoricoPage page.
@@ -39,6 +40,12 @@ export class HistoricoPage {
 
   apagaHistorico(){
     this.historicoProvider.clear();
+  }
+
+  goToHistoryDetail(key:any){
+    this.navCtrl.push(HistoryDetailPage, {
+      key: key
+    });
   }
 
 }
