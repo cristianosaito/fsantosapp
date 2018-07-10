@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HistoricoProvider } from "../../providers/historico/historico";
 import { Historico } from "../../models/historico";
-
+import { HomePage } from "../home/home";
 /**
  * Generated class for the HistoryDetailPage page.
  *
@@ -35,8 +35,15 @@ export class HistoryDetailPage {
     this.historicoProvider.get(this.key)
       .then(results => {
         this.historico = results;
-        console.log(results);
       });
+  }
+
+  makeNewSimulation(){
+    this.navCtrl.push(HomePage, { historicSimulation: this.historico, fromHistory:'new'});
+  }
+
+  makeSameSimulation(){
+    this.navCtrl.push(HomePage, { historicSimulation: this.historico, fromHistory: 'same' });
   }
 
 }

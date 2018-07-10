@@ -29,6 +29,7 @@
         <ion-option value="euro">euro</ion-option>
         <ion-option value="yene">yene</ion-option>
         <ion-option value="libra">libra</ion-option>
+        <ion-option value="bitcoin">bitcoin</ion-option>
       </ion-select>
     </ion-item>
     </ion-list>
@@ -51,6 +52,7 @@
         <ion-option value="euro">euro</ion-option>
         <ion-option value="yene">yene</ion-option>
         <ion-option value="libra">libra</ion-option>
+        <ion-option value="bitcoin">bitcoin</ion-option>
       </ion-select>
     </ion-item>
     </ion-list>
@@ -98,6 +100,16 @@
     </ion-col>
     <ion-col col-6>
       <ion-item text-center>R$ {{libra}}<ion-icon [name]="libraIcon"></ion-icon></ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row align-items-center>
+    <ion-col col-6>
+      <ion-item text-center>Bitcoin</ion-item>
+    </ion-col>
+    <ion-col col-6>
+      <ion-item text-center>R$ {{bitcoin}}
+        <ion-icon [name]="bitcoinIcon"></ion-icon>
+      </ion-item>
     </ion-col>
   </ion-row>
   <ion-row>

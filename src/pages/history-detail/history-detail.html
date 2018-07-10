@@ -72,10 +72,10 @@
     </ion-row>
     <ion-row text-center>
       <ion-col>
-        <button ion-button full small color="default">refazer a mesma consulta?</button>
+        <button ion-button text-wrap full small color="default" (click)="makeSameSimulation()">refazer a mesma consulta?</button>
       </ion-col>
       <ion-col>
-        <button ion-button full small color="secondary">utilizar dados para outra consulta?</button>
+        <button ion-button text-wrap full small color="secondary" (click)="makeNewSimulation()">utilizar dados para outra consulta?</button>
       </ion-col>
     </ion-row>
   </ion-item>

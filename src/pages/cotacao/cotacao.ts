@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NcmProvider } from '../../providers/ncm/ncm';
 import { Http } from '@angular/http';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the CotacaoPage page.
@@ -23,6 +24,7 @@ export class CotacaoPage {
   dolarIcon: string;
   yeneIcon: string;
   euroIcon: string;
+  bitcoinIcon: string;
 
   dolar: any ;
   dolar_n:any;
@@ -36,6 +38,9 @@ export class CotacaoPage {
   libra: any ;
   libra_n:any;
   libra_ontem:any;
+  bitcoin: any;
+  bitcoin_n: any;
+  bitcoin_ontem: any;
 
   valor1:any;
   valor2:any;
@@ -48,12 +53,14 @@ export class CotacaoPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public ncmProvider: NcmProvider,
-    public http: Http
+    public http: Http,
+    public loadingCtrl: LoadingController
     ) {
       this.getCotacao(1);
       this.getCotacao(21619);
       this.getCotacao(21621);
       this.getCotacao(21623);
+      this.getBitCoin();
       this.data_show = this.dataFormatada();
   }
 
@@ -64,6 +71,16 @@ export class CotacaoPage {
         const response = (data as any);
         const obj_retorno = JSON.parse(response._body);
         this.setMoedas(moeda, obj_retorno.valor_dia, obj_retorno.valor_dia_anterior);
+      }
+    );
+  }
+
+  async getBitCoin(){
+    this.http.get("https://www.mercadobitcoin.net/api/BTC/ticker/").subscribe(
+      data => {
+        const response = (data as any);
+        const obj_retorno = JSON.parse(response._body);
+        this.bitcoin = this.formataReal2(parseFloat(obj_retorno.ticker.last));
       }
     );
   }
@@ -111,15 +128,21 @@ export class CotacaoPage {
         this.yene_ontem = valor2;
         this.yeneIcon = icon;
         break;
-    }
-
-    
+    }    
   }
 
   formataReal(num) {
     num = (parseFloat(num)).toLocaleString('pt-BR', {
       minimumFractionDigits: 4,
       maximumFractionDigits: 4
+    });
+    return num;
+  }
+
+  formataReal2(num) {
+    num = (parseFloat(num)).toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     });
     return num;
   }
@@ -200,6 +223,14 @@ converteValor(){
 
 }
   ionViewDidLoad() {
-   
+    this.presentLoading();
+  }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "carregando...",
+      duration: 3000
+    });
+    loader.present();
   }
 }

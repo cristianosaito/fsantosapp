@@ -57,6 +57,7 @@ export class PerfilPage {
         Promise.all(promiseList)
            .then(url => {
              this.imagem = url;
+
           }).catch(function (error) {
             // An error happened.
             console.log(error);

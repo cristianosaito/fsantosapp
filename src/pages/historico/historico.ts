@@ -34,7 +34,6 @@ export class HistoricoPage {
     this.historicoProvider.getAll()
     .then( results =>{
         this.historicolist = results;
-      console.log(results);
     });
   }
 

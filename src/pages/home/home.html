@@ -2,7 +2,6 @@
   <ion-navbar>
     <ion-title>Simulação</ion-title>
   </ion-navbar>
- 
 </ion-header>
 
 <ion-content padding text-center>
@@ -26,7 +25,7 @@
             <ion-col col-7>         
               <ion-item text-center>
                 <ion-label floating>Valor Unitário</ion-label>
-                <ion-input text-center type="text" name="valor_uni" formControlName='valor_uni'></ion-input>
+                <ion-input text-center type="text" name="valor_uni" formControlName='valor_uni' value={{valor_search}}></ion-input>
               </ion-item>
           </ion-col>
 
@@ -48,7 +47,7 @@
           <ion-col>
             <ion-item text-center>
               <ion-label floating>Peso Unitário (Kg)</ion-label>
-              <ion-input text-center type="text" name="peso_uni" formControlName='peso_uni'></ion-input>
+              <ion-input text-center type="text" name="peso_uni" formControlName='peso_uni' value={{peso_search}}></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -56,7 +55,7 @@
           <ion-col>
             <ion-item text-center>
               <ion-label floating>Quantidade</ion-label>
-              <ion-input text-center type="text" name="quantidade" formControlName='quantidade'></ion-input>
+              <ion-input text-center type="text" name="quantidade" formControlName='quantidade' value={{quantidade_search}}></ion-input>
             </ion-item> 
           </ion-col>
         </ion-row>
@@ -67,6 +66,7 @@
               <ion-select formControlName="modal">
                 <ion-option value="ar">aéreo</ion-option>
                 <ion-option value="mar">marítimo</ion-option>
+                <ion-option value="terra">terrestre</ion-option>
               </ion-select>
             </ion-item>
           </ion-col>
